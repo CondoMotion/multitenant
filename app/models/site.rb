@@ -4,7 +4,7 @@ class Site < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :company
-  has_many :pages, dependent: :destroy
+  has_many :pages, dependent: :destroy, :order => "position"
   has_many :posts, :through => :pages
   attr_accessible :name, :subdomain, :posts_attributes, :layout, :custom_layout_content
 
