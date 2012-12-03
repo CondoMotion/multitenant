@@ -18,6 +18,7 @@ private
 	def add_owner_to_company
 		@owner = self.owner
 		@owner.company_id = self.id
+		@owner.manager = true
 		@owner.save
 	end
 end

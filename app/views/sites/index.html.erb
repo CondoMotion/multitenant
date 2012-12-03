@@ -1,10 +1,25 @@
 <h1><%= current_company.name if current_company %></h1>
 
+<h3>Managers</h3>
+<%= text_area_tag :add_managers %>
+
+<ul>
+  <% current_company.users.each do |user| %>
+    <% if user.manager? %>
+      <li><%= user.email %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<hr>
+
+<h3>Sites</h3>
+
 <div id="topics">
 <% @sites.each do |site| %>
-  <h2><%= link_to site.name, root_url(subdomain: site.subdomain) %></h2>
+  <h2><%= link_to site.name, edit_site_url(subdomain: site.subdomain) %></h2>
   <%= pluralize site.posts.size, "post" %>
-  | <%= link_to "Edit", edit_site_url(subdomain: site.subdomain) %>
+  | <%= link_to "View", root_url(subdomain: site.subdomain) %>
   | <%= link_to "Destroy", site_path(site), method: :delete %>
 <% end %>
 </div>

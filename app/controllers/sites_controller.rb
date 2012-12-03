@@ -27,6 +27,7 @@ class SitesController < ApplicationController
     @site = Site.find_by_subdomain!(request.subdomain)
     @page = Page.new
     @page.site = @site
+
   end
 
   # POST /sites
@@ -52,7 +53,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.update_attributes(params[:site])
-        format.html { redirect_to root_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
+        format.html { redirect_to edit_site_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

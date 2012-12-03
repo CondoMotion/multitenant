@@ -6,6 +6,9 @@ $ ->
   $("#site_layout").change ->
     fields.toggle()
 
+  $("#site_name").keyup ->
+  	$('.site_name').text($(this).val())
+
 
 fields = toggle: ->
   if $("#site_layout").val() is "custom"

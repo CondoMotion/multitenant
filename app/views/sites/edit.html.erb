@@ -1,10 +1,13 @@
-<h1>Editing <%= link_to @site.name, root_path %></h1>
+<h1>Editing <%= link_to @site.name, root_path, class: "site_name" %></h1>
+
+<h3>Settings</h3>
 
 <%= render 'form' %>
 
 <hr>
 
 <h3>Pages</h3>
+
 <ul id="pages" data-update-url="<%= sort_pages_url %>">
 <% @site.pages.each do |page| %>
   <%= content_tag_for :li, page do %>
@@ -14,4 +17,5 @@
 <% end %>
 </ul>
 
+<h4>New Page</h4>
 <%= render 'pages/form' %>
