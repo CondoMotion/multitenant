@@ -18,17 +18,15 @@
         <%= content_tag :div, msg, id: "flash_#{name}" %>
       <% end %>
 
-      <h1><%= current_site.name %></h1>
-
       <ul class="site_menu">
         <% current_site.pages.each do |page| %>
           <li><%= link_to page.name, page %></li>
         <% end %>
-        <li><%= link_to "+", new_page_path %></li>
+        <li><%= link_to "+", edit_site_path %></li>
       </ul>
 
       <%= yield %>
-      
+
     </div>
   </body>
 </html>

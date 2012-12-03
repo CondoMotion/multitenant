@@ -7,12 +7,17 @@ Forum::Application.routes.draw do
   get '/', to: 'pages#show', constraints: lambda { |r| r.subdomain.present? || r.subdomain != 'www' }
   get '/edit', to: 'sites#edit', as: 'edit_site', constraints: lambda { |r| r.subdomain.present? || r.subdomain != 'www' } 
 
+  
+
   resources :pages do
     collection { post :sort }
   end
   devise_for :users
   resources :sites
   resources :posts
+
+  get ':id', to: 'pages#show', as: :page
+  get ':id/edit', to: 'pages#edit', as: :edit_page
 
   root to: 'sites#index'
 end

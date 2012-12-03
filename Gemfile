@@ -8,6 +8,7 @@ gem 'carrierwave'
 gem 'ancestry'
 gem 'acts_as_list'
 gem 'liquid'
+gem 'friendly_id'
 gem 'letter_opener', :group => :development
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

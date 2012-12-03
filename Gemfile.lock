@@ -58,6 +58,7 @@ GEM
     font-awesome-sass-rails (2.0.0.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
+    friendly_id (4.0.8)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -139,6 +140,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   font-awesome-sass-rails
+  friendly_id
   jquery-rails
   letter_opener
   liquid

@@ -23,17 +23,6 @@ class PagesController < ApplicationController
     end
   end
 
-  # GET /pages/new
-  # GET /pages/new.json
-  def new
-    @page = current_site.pages.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @page }
-    end
-  end
-
   # GET /pages/1/edit
   def edit
     @page = current_site.pages.find(params[:id])
@@ -43,13 +32,14 @@ class PagesController < ApplicationController
   # POST /pages.json
   def create
     @page = current_site.pages.new(params[:page])
+    @site = @page.site
 
     respond_to do |format|
       if @page.save
         format.html { redirect_to @page, notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @page }
       else
-        format.html { render action: "new" }
+        format.html { render action: "edit" }
         format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
@@ -59,6 +49,7 @@ class PagesController < ApplicationController
   # PUT /pages/1.json
   def update
     @page = current_site.pages.find(params[:id])
+    @site = @page.site
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
@@ -78,7 +69,7 @@ class PagesController < ApplicationController
     @page.destroy
 
     respond_to do |format|
-      format.html { redirect_to pages_url }
+      format.html { redirect_to edit_site_url }
       format.json { head :no_content }
     end
   end
