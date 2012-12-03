@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  #around_filter :scope_current_company
+  around_filter :scope_current_company
   layout :layout_by_resource
 
   def layout_by_resource
