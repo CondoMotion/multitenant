@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 	def edit 
 		@post = Post.find(params[:id])
 		@page = @post.page
-		@site = @post.page.site
+		# @site = @post.page.site
 	end
 
 	def update

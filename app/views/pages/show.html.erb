@@ -1,6 +1,7 @@
 <%= raw @page.content %>
 
 <% if @page.has_posts? %>
+  <p>New <%= @page.post_type.singularize %></p>
   <%= render 'posts/form' %>
   <br>
 <% end %>

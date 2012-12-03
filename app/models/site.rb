@@ -23,13 +23,13 @@ private
 		@page = self.pages.build(name: "Home", content: "<p>Welcome to our community!</p>", has_posts: false)
 		@page.save
 
-		@page = self.pages.build(name: "News", content: "", has_posts: true)
+		@page = self.pages.build(name: "News", content: "", has_posts: true, post_type: "news")
 		@page.save
 
-		@page = self.pages.build(name: "Documents", content: "", has_posts: true)
+		@page = self.pages.build(name: "Documents", content: "", has_posts: true, post_type: "documents")
 		@page.save
 
-		@page = self.pages.build(name: "Photos", content: "", has_posts: true)
+		@page = self.pages.build(name: "Photos", content: "", has_posts: true, post_type: "photos")
 		@page.save
 	end
 end
