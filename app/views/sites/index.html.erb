@@ -1,0 +1,12 @@
+<h1><%= current_company.name if current_company %></h1>
+
+<div id="topics">
+<% @sites.each do |site| %>
+  <h2><%= link_to site.name, root_url(subdomain: site.subdomain) %></h2>
+  <%= pluralize site.posts.size, "post" %>
+  | <%= link_to "Edit", edit_site_url(subdomain: site.subdomain) %>
+  | <%= link_to "Destroy", site_path(site), method: :delete %>
+<% end %>
+</div>
+
+<p><%= link_to "New Site", new_site_path %></p>
