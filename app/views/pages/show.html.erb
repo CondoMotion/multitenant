@@ -1,8 +1,9 @@
-<%= simple_format @page.content %>
+<%= raw @page.content %>
 
-<%= render 'posts/form' if @page.has_posts? %>
-
-<br>
+<% if @page.has_posts? %>
+  <%= render 'posts/form' %>
+  <br>
+<% end %>
 
 <% @page.posts.each do |post| %>
   <div class="post">
@@ -11,6 +12,5 @@
 <% end %>
 
 <div>
-  <br>
   <%= link_to 'Edit Page', edit_page_path(@page) %>
 </div>

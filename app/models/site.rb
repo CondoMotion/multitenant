@@ -22,5 +22,14 @@ private
 	def create_default_pages
 		@page = self.pages.build(name: "Home", content: "Welcome to our community!", has_posts: false)
 		@page.save
+
+		@page = self.pages.build(name: "News", content: "", has_posts: true)
+		@page.save
+
+		@page = self.pages.build(name: "Documents", content: "", has_posts: true)
+		@page.save
+
+		@page = self.pages.build(name: "Photos", content: "", has_posts: true)
+		@page.save
 	end
 end

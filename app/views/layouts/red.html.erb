@@ -20,7 +20,7 @@
 
       <h1><%= current_site.name %></h1>
 
-      <ul>
+      <ul class="site_menu">
         <% current_site.pages.each do |page| %>
           <li><%= link_to page.name, page %></li>
         <% end %>

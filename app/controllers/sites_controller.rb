@@ -11,18 +11,6 @@ class SitesController < ApplicationController
     end
   end
 
-  # GET /sites/1
-  # GET /sites/1.json
-  # def show
-  #   @site = Site.unscoped.find_by_subdomain!(request.subdomain)
-  #   @post = Post.new
-
-  #   respond_to do |format|
-  #     format.html # show.html.erb
-  #     format.json { render json: @site }
-  #   end
-  # end
-
   # GET /sites/new
   # GET /sites/new.json
   def new
