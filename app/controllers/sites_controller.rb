@@ -1,4 +1,5 @@
-class SitesController < ApplicationController  
+class SitesController < ApplicationController 
+  before_filter :authenticate_user!, except: :show 
   # GET /sites
   # GET /sites.json
   def index
@@ -12,15 +13,15 @@ class SitesController < ApplicationController
 
   # GET /sites/1
   # GET /sites/1.json
-  def show
-    @site = Site.unscoped.find_by_subdomain!(request.subdomain)
-    @post = Post.new
+  # def show
+  #   @site = Site.unscoped.find_by_subdomain!(request.subdomain)
+  #   @post = Post.new
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @site }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html # show.html.erb
+  #     format.json { render json: @site }
+  #   end
+  # end
 
   # GET /sites/new
   # GET /sites/new.json
@@ -36,6 +37,8 @@ class SitesController < ApplicationController
   # GET /sites/1/edit
   def edit
     @site = Site.find_by_subdomain!(request.subdomain)
+    @page = Page.new
+    @page.site = @site
   end
 
   # POST /sites

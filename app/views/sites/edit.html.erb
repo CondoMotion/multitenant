@@ -1,5 +1,19 @@
-<h1>Editing <%= @site.name %> (<%= link_to "View", root_url(subdomain: @site.subdomain) %>)</h1>
+<h1>Editing <%= link_to @site.name, root_path %></h1>
 
 <%= render 'form' %>
+
+<hr>
+
+<h3>Pages</h3>
+<ul id="pages" data-update-url="<%= sort_pages_url %>">
+<% @site.pages.each do |page| %>
+  <%= content_tag_for :li, page do %>
+    <span class="handle">[drag]</span>
+    <%= link_to page.name, page %> | <%= link_to 'Edit', edit_page_path(page) %> | <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+<% end %>
+</ul>
+
+<%= render 'pages/form' %>
 
 <p><%= link_to "Sites", sites_url(subdomain: 'www') %></p>

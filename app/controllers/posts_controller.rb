@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_filter :authenticate_user!
 
   def show
     @post = current_site.posts.find(params[:id])

@@ -65,4 +65,12 @@ private
   ensure
     Company.current_id = nil
   end
+
+  def after_sign_in_path_for(resource_or_scope)
+    if request.subdomain.present? && request.subdomain != "www"
+      root_path
+    else
+      sites_path
+    end
+  end
 end

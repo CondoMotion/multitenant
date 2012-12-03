@@ -4,24 +4,15 @@
     <title><%= current_site.name %></title>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <style type="text/css">
-      html, body { background: #ccc; }
+      html, body { background: #CCC; }
     </style>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
   </head>
   <body>
     <div id="container">
-      <div id="user_nav">
-      <% if current_user %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to "Dashboard", sites_url(subdomain: "www") %> |
-        <%= link_to "Edit Profile", edit_user_registration_path %> |
-        <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Sign Up", new_user_registration_path %> or
-        <%= link_to "Log In", new_user_session_path %>
-      <% end %>
-      </div>
+      
+      <%= render 'layouts/user_nav' %>
 
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, id: "flash_#{name}" %>
@@ -37,7 +28,7 @@
       </ul>
 
       <%= yield %>
-
+      
     </div>
   </body>
 </html>

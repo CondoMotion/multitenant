@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203003438) do
+ActiveRecord::Schema.define(:version => 20121203021603) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20121203003438) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "position"
+    t.boolean  "has_posts"
   end
 
   add_index "pages", ["ancestry"], :name => "index_pages_on_ancestry"

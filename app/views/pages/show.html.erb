@@ -1,6 +1,6 @@
 <%= simple_format @page.content %>
 
-<%= render 'posts/form' %>
+<%= render 'posts/form' if @page.has_posts? %>
 
 <br>
 

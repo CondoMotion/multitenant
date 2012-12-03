@@ -2,7 +2,7 @@ class Page < ActiveRecord::Base
   belongs_to :company
   belongs_to :site
   has_many :posts, dependent: :destroy
-  attr_accessible :ancestry, :content, :name, :parent_id
+  attr_accessible :ancestry, :content, :name, :parent_id, :has_posts
   has_ancestry
   acts_as_list
 

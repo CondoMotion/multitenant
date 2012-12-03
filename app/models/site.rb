@@ -1,5 +1,6 @@
 class Site < ActiveRecord::Base
 	after_create :create_default_pages
+	before_save :subdomain_param
 
   belongs_to :user
   belongs_to :company
@@ -14,8 +15,12 @@ class Site < ActiveRecord::Base
   default_scope { where(company_id: Company.current_id) }
 
 private
+	def subdomain_param
+		self.subdomain = self.subdomain.parameterize
+	end
+
 	def create_default_pages
-		@page = self.pages.build(name: "Home", content: "Welcome to our community!")
+		@page = self.pages.build(name: "Home", content: "Welcome to our community!", has_posts: false)
 		@page.save
 	end
 end

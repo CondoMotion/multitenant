@@ -1,19 +1,10 @@
 class PagesController < ApplicationController
+  before_filter :authenticate_user!, except: :show
   def sort
     params[:page].each_with_index do |id, index|
       Page.update_all({position: index+1}, {id: id})
     end
     render nothing: true
-  end
-  # GET /pages
-  # GET /pages.json
-  def index
-    @pages = current_site.pages.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pages }
-    end
   end
 
   # GET /pages/1

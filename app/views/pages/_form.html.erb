@@ -19,6 +19,11 @@
     <%= f.label :content %><br />
     <%= f.text_area :content %>
   </div>
+
+  <div>
+    <%= f.label :has_posts, "Page has posts?" %>
+    <%= f.check_box :has_posts %>
+  </div>
   <div class="field">
     <%= f.label :parent_id %><br />
     <%= f.collection_select :parent_id, Page.order(:name), :id, :name, include_blank: true %>
