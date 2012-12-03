@@ -56,7 +56,11 @@ private
   helper_method :current_company
   
   def scope_current_company
-    Company.current_id = current_company.id if current_company
+    if current_company
+      Company.current_id = current_company.id
+    else
+      Company.current_id = nil
+    end
     yield
   ensure
     Company.current_id = nil
