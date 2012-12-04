@@ -45,10 +45,15 @@ private
   helper_method :current_site
   
   def current_company
-    if current_user
+    if request.subdomain.present? && request.subdomain != "www"
+      case controller_name
+      when 'pages', 'sites', 'posts'
+        Site.unscoped.find_by_subdomain!(request.subdomain).company if action_name == 'show'
+      else
+        nil
+      end
+    elsif current_user
       Company.find(current_user.company_id)
-    elsif request.subdomain.present? && request.subdomain != "www"
-      Site.unscoped.find_by_subdomain!(request.subdomain).company
     else
       nil
     end
