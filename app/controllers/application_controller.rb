@@ -4,32 +4,25 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def layout_by_resource
-    if devise_controller?
-      if request.subdomain.present? && request.subdomain != "www"
+    if request.subdomain.present? && request.subdomain != "www"
+      if devise_controller?
         Site.unscoped.find_by_subdomain!(request.subdomain).layout
       else
-        "application"
-      end
-    elsif (controller_name == 'sites' && action_name == 'show')
-      if request.subdomain.present? && request.subdomain != "www"
-        Site.unscoped.find_by_subdomain!(request.subdomain).layout
-      else
-        "application"
-      end
-    elsif controller_name == 'posts'
-      if request.subdomain.present? && request.subdomain != "www"
-        Site.unscoped.find_by_subdomain!(request.subdomain).layout
-      else
-        "application"
-      end
-    elsif controller_name == 'pages'
-      if request.subdomain.present? && request.subdomain != "www"
-        Site.unscoped.find_by_subdomain!(request.subdomain).layout
-      else
-        "application"
+        case controller_name
+        when 'pages', 'posts', 'devise'
+          Site.unscoped.find_by_subdomain!(request.subdomain).layout
+        when 'sites'
+          if action_name == 'show'
+            Site.unscoped.find_by_subdomain!(request.subdomain).layout
+          else
+            'application'
+          end
+        else
+          'application'
+        end
       end
     else
-      "application"
+      'application'
     end
   end
 
@@ -45,17 +38,27 @@ private
   helper_method :current_site
   
   def current_company
-    if request.subdomain.present? && request.subdomain != "www"
-      case controller_name
-      when 'pages', 'sites', 'posts'
-        Site.unscoped.find_by_subdomain!(request.subdomain).company if action_name == 'show'
+    case controller_name
+    when 'sites', 'pages', 'posts'
+      if action_name == 'show'
+        if request.subdomain.present? && request.subdomain != "www"
+          Site.unscoped.find_by_subdomain!(request.subdomain).company 
+        end
+      else
+        if current_user
+          Company.find(current_user.company_id)
+        else
+          nil
+        end
+      end  
+    else
+      if current_user
+        Company.find(current_user.company_id)
+      elsif devise_controller? && request.subdomain.present? && request.subdomain != "www"
+        Site.unscoped.find_by_subdomain!(request.subdomain).company
       else
         nil
       end
-    elsif current_user
-      Company.find(current_user.company_id)
-    else
-      nil
     end
   end
   helper_method :current_company
