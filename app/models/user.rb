@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :owned_company_attributes
-  validates_uniqueness_of :email #, scope: :company_id
+  # validates_uniqueness_of :email #, scope: :company_id
 
   has_many :sites
   has_many :posts
