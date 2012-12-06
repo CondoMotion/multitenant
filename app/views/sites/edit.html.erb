@@ -19,3 +19,25 @@
 
 <h4>New Page</h4>
 <%= render 'pages/form' %>
+
+<hr>
+
+<h3>Members</h3>
+
+<ul id="members">
+<% @site.members.each do |member| %>
+  <%= content_tag_for :li, member do %>
+    <%= member.email %> (<%= member.site_role(@site).name %>)
+  <% end %>
+<% end %>
+</ul>
+
+<%= form_tag batch_create_residents_memberships_path, :method => :post do %>
+  <%= label_tag "Add residents (emails separated by commas)" %><br>
+  <%= text_area_tag :emails %><br>
+  <%= select("role", "", current_site.roles.all.collect {|p| [ p.name, p.id ] }, {}, {id: "role", name: "role"}) %>
+  <div>
+    <%= submit_tag "Invite!", class: "btn" %>
+  </div>
+<% end %>
+

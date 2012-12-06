@@ -4,6 +4,7 @@ class Company < ActiveRecord::Base
   has_many :users
   has_many :sites, dependent: :destroy
   has_many :pages
+  has_many :membersips
   belongs_to :owner, :class_name => "User"
   
   def self.current_id=(id)

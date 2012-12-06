@@ -1,5 +1,13 @@
 class SitesController < ApplicationController 
   before_filter :authenticate_user!, except: :show 
+
+
+  def add_residents
+
+  end
+  def add_managers
+
+  end
   # GET /sites
   # GET /sites.json
   def index

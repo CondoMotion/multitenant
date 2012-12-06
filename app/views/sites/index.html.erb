@@ -1,7 +1,13 @@
 <h1><%= current_company.name if current_company %></h1>
 
 <h3>Managers</h3>
-<%= text_area_tag :add_managers %>
+<%= form_tag batch_create_managers_memberships_path, :method => :post do %>
+  <%= label_tag "Add managers (emails separated by commas)" %><br>
+  <%= text_area_tag :emails %>
+  <div>
+    <%= submit_tag "Invite!", class: "btn" %>
+  </div>
+<% end %>
 
 <ul>
   <% current_company.users.each do |user| %>
@@ -15,12 +21,32 @@
 
 <h3>Sites</h3>
 
-<div id="topics">
-<% @sites.each do |site| %>
-  <h2><%= link_to site.name, edit_site_url(subdomain: site.subdomain) %></h2>
-  <%= pluralize site.posts.size, "post" %>
-  | <%= link_to "View", root_url(subdomain: site.subdomain) %>
-  | <%= link_to "Destroy", site_path(site), method: :delete %>
+<div id="sites">
+<% if @sites.length > 0 %>
+  <% @sites.each do |site| %>
+    <h2><%= link_to site.name, edit_site_url(subdomain: site.subdomain) %></h2>
+    <%= pluralize site.posts.size, "post" %>
+    | <%= link_to "View", root_url(subdomain: site.subdomain) %>
+    | <%= link_to "Destroy", site_path(site), method: :delete %>
+  <% end %>
+<% else %>
+  <div class="no-content">
+    <h2>No sites yet.  Create one!</h2>
+    <%= form_for Site.new do |f| %>
+      <div class="field">
+        <%= f.text_field :name, placeholder: "Name" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :subdomain, placeholder: "Subdomain" %>
+      </div>
+      <div class="field">
+        <%= f.label :layout %><br />
+        <%= f.select :layout, [["Grey", 'site'], ["Red", 'red'], ["Custom", 'custom']] %>
+      </div>
+
+      <%= f.submit %>
+    <% end %>
+  </div>
 <% end %>
 </div>
 
