@@ -1,23 +1,10 @@
+@import "bootstrap";
+
 html, body {
   background-color: #4B7399;
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
 }
 
-a {
-  color: #0000FF;
-  img { border: none; }
-}
-
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
-}
-
-#container {
-  width: 80%;
-  margin: 0 auto;
+.container {
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
@@ -57,10 +44,6 @@ a {
 
 .field_with_errors {
   display: inline;
-}
-
-form .field, form .actions {
-  margin: 12px 0;
 }
 
 #user_nav {

@@ -35,7 +35,7 @@
 <%= form_tag batch_create_residents_memberships_path, :method => :post do %>
   <%= label_tag "Add residents (emails separated by commas)" %><br>
   <%= text_area_tag :emails %><br>
-  <%= select("role", "", current_site.roles.all.collect {|p| [ p.name, p.id ] }, {}, {id: "role", name: "role"}) %>
+  <%= select("role", "", current_site.roles.all.collect {|r| [ r.name, r.id ] }, {}, {id: "role", name: "role"}) %>
   <div>
     <%= submit_tag "Invite!", class: "btn" %>
   </div>

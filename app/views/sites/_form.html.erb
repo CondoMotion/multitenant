@@ -12,23 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :subdomain %><br />
+    <%= f.label :subdomain %>
     <%= f.text_field :subdomain %>
   </div>
   <div class="field">
-    <%= f.label :layout %><br />
+    <%= f.label :layout %>
     <%= f.select :layout, [["Grey", 'site'], ["Red", 'red'], ["Custom", 'custom']] %>
   </div>
   <div class="field" id="custom_layout_fields">
-    <%= f.label :custom_layout_content %><br />
+    <%= f.label :custom_layout_content %>
     <%= f.text_area :custom_layout_content, :rows => 12 %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn" %>
   </div>
 <% end %>

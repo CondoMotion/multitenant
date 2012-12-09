@@ -12,28 +12,29 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.label :content %>
+    <%= f.text_area :content, rows: 5 %>
   </div>
 
   <div>
-    <%= f.label :has_posts, "Page has posts?" %>
-    <%= f.check_box :has_posts %>
+    <label class="checkbox">
+      <%= f.check_box :has_posts %> Has posts?
+    </label>
   </div>
   <div class="field">
-    <%= f.label :post_type %><br />
+    <%= f.label :post_type %>
     <%= f.select :post_type, {"News" => "news", "Documents" => "documents", "Photos" => "photos"} %>
   </div>
 
   <div class="field">
-    <%= f.label :parent_id %><br />
+    <%= f.label :parent_id %>
     <%= f.collection_select :parent_id, Page.order(:name), :id, :name, include_blank: true %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn" %>
   </div>
 <% end %>
