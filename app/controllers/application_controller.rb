@@ -4,8 +4,14 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def layout_by_resource
-    if ((['pages','posts'].include? controller_name) || devise_controller? || (controller_name == 'sites' && action_name == 'show')) && current_site
+    if ((['pages','posts'].include? controller_name) || (controller_name == 'sites' && action_name == 'show')) && current_site
       current_site.layout
+    elsif devise_controller?
+      if request.subdomain.present? && request.subdomain != 'www'
+        current_site.layout
+      else
+        'home'
+      end
     else
       'application'
     end
