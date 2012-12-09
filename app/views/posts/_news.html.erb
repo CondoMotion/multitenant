@@ -1,0 +1,5 @@
+<div class="news">
+	NEWS
+	<p>Posted by <%= @post.user.email %> <%= time_ago_in_words(@post.created_at) %> ago</p>
+  <%= @post.title %>
+</div>

@@ -2,8 +2,7 @@
 
 <% if @page.has_posts? %>
   <p>New <%= @page.post_type.singularize %></p>
-  <%= render 'posts/form' %>
-  <br>
+  <%= render "posts/#{@page.post_type.downcase}_form" %>
 <% end %>
 
 <% @page.posts.each do |post| %>
