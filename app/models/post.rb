@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
-  attr_accessible :name, :title, :content, :attachment
-  before_save :set_type
+	mount_uploader :attachment, AttachmentUploader
+
+  attr_accessible :name, :title, :content, :attachment, :remote_attachment_url
+  before_validation :set_type
 
   belongs_to :page
   belongs_to :user
@@ -11,7 +13,9 @@ class Post < ActiveRecord::Base
   default_scope { order('created_at DESC') }
 
 private
+
   def set_type
     self.post_type = self.page.post_type
   end
+  
 end

@@ -9,13 +9,17 @@ class MembershipsController < ApplicationController
       if current_company.users.find_by_email(email).nil?
         @user = current_company.users.new(email: email, password: @pw, password_confirmation: @pw)
         @user.manager = 1
-        #UserMailer.invite_user(@user, current_user).deliver
+        @new_user = true
       else
         @user = current_company.users.find_by_email(email)
         @user.manager = 1
+        @new_user = false
       end
 
       @user.save
+      if @new_user
+        UserMailer.invite_user(@user, current_user).deliver
+      end
     end
 
     respond_to do |format|
@@ -33,8 +37,10 @@ class MembershipsController < ApplicationController
       if User.find_by_email(email).nil?
         @user = current_company.users.new(email: email, password: @pw, password_confirmation: @pw)
         @user.manager = 0
+        @new_user = true
       else
         @user = User.find_by_email(email)
+        @new_user = false
       end
 
       if @user.company == current_company
@@ -51,7 +57,9 @@ class MembershipsController < ApplicationController
             @membership = current_site.memberships.new
             @membership.role = @role
             @membership.user = @user
-            # UserMailer.invite_user(@user, current_user).deliver
+            if @new_user
+              UserMailer.invite_user(@user, current_user).deliver
+            end
             @membership.save
           end
         end

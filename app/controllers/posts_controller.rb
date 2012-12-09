@@ -9,13 +9,15 @@ class PostsController < ApplicationController
 	  @post = current_user.posts.new(params[:post])
 	  @post.page = Page.find(params[:page_id])
 	  @site = @post.page.site 
+	  @page = @post.page
 
 	  if @post.save
+	  	PostMailer.new_post(@post, @post.attachment.url.nil? ? "" : @post.attachment.url).deliver
 	    flash[:notice] = 'Post was successfully created.'
 	    redirect_to( page_url(@post.page, subdomain: @site.subdomain) )
 	  else
 	    flash[:error] = 'Post could not be created.'
-	    render :template => 'sites/show'
+	    render template: "pages/show"
 	  end
 	end
 

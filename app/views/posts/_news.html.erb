@@ -1,5 +1,5 @@
 <div class="news">
-	NEWS
 	<p>Posted by <%= @post.user.email %> <%= time_ago_in_words(@post.created_at) %> ago</p>
-  <%= @post.title %>
+  <h4><%= @post.title %></h4>
+  <p><%= @post.content %></p>
 </div>

@@ -1,5 +1,5 @@
 <div class="photo">
-	PHOTO
 	<p>Posted by <%= @post.user.email %> <%= time_ago_in_words(@post.created_at) %> ago</p>
-  <%= @post.title %>
+  <%= @post.title %><br>
+  <%= image_tag @post.attachment.url %>
 </div>

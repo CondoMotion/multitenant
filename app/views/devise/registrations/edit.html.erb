@@ -6,6 +6,11 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
 
+  <div>
+    <%= f.check_box :receive_post_mails %>
+    <%= f.label :receive_post_mails, "Email me about new posts?" %>
+  </div>
+
   <%= f.fields_for :owned_company do |ocf| %>
     <div>
       <%= ocf.label "Company Name" %><br>

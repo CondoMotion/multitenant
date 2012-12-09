@@ -10,7 +10,9 @@
     </div>
   <% end %>
 	<%= hidden_field_tag 'page_id', @page.id %>
-	<%= f.text_field :title %>
+	<%= f.text_field :title, placeholder: "Title" %><br>
+  <%= f.file_field :attachment %><br>
+  or <%= f.text_field :remote_attachment_url, placeholder: "URL" %><br>
 
 	<%= f.submit %>
 <% end %>

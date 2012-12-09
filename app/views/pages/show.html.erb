@@ -1,6 +1,6 @@
 <%= raw @page.content %>
 
-<% if @page.has_posts? %>
+<% if @page.has_posts? && user_signed_in? %>
   <p>New <%= @page.post_type.singularize %></p>
   <%= render "posts/#{@page.post_type.downcase}_form" %>
 <% end %>
