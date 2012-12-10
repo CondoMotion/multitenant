@@ -7,3 +7,5 @@ jQuery ->
     handle: '.handle'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
+
+  $('.best_in_place').best_in_place()

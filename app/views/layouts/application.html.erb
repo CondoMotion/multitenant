@@ -7,15 +7,18 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
-    <div class="container">
+    <% if flash[:notice] %>
+      <p class="flash alert alert-success"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="flash alert alert-error"><%= flash[:error] %></p>
+    <% end %>  
 
+    <div class="container">
+      
       <%= render 'layouts/user_nav' %>
       <%= render 'home/nav' unless user_signed_in? %>
 
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash_#{name}" %>
-      <% end %>
-      
       <%= yield %>
 
     </div>

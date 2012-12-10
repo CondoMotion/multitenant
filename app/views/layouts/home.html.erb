@@ -32,7 +32,8 @@
     <% end %>
     <% if flash[:error] %>
       <p class="flash alert alert-error"><%= flash[:error] %></p>
-    <% end %>  	<div style="background: #fff;">
+    <% end %>  	
+    <div style="background: #fff;">
 			<div class="container" style="padding: 40px 0px;">
         <div class="row">
   				<div class="span12">
@@ -54,7 +55,13 @@
 	  	</div>
 	  </div>
 
-    <%= yield %>
+	  <% if devise_controller? %>
+    	<div class="container">
+	    	<%= yield %>
+	    </div>
+	  <% else %>
+	  	<%= yield %>
+    <% end %>
 
 	</body>
 </html>

@@ -1,4 +1,4 @@
-<%= raw @page.content %>
+<%= raw best_in_place_if user_signed_in?, @page, :content, type: :textarea, sanitize: false %>
 
 <% if @page.has_posts? && user_signed_in? %>
   <p>New <%= @page.post_type.singularize %></p>

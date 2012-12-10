@@ -1,0 +1,13 @@
+<h1><%= @site.name %></h1>
+
+<p><%= link_to "Home", root_url(subdomain: @site.subdomain) %> | <%= link_to "Posts", posts_url(subdomain: @site.subdomain) %></p>
+
+<%= render 'form' %>
+
+<% @posts.each do |post| %>
+  <div class="post">
+    <%= link_to post.content, post %>
+  </div>
+<% end %>
+
+<p><%= link_to "Sites", sites_url(subdomain: 'www') %> | <%= link_to "Edit", edit_site_url(subdomain: @site.subdomain) %></p>
