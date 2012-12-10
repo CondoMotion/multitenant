@@ -29,7 +29,7 @@ Forum::Application.configure do
     :domain         => 'heroku.com'
   }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'condomotion.net/' }
+  config.action_mailer.default_url_options = { :host => 'condomotion.net' }
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
