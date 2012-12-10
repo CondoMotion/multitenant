@@ -4,4 +4,4 @@
 You can login using your email and temporary password: <%= @invitee.password %>.
 </p>
 
-<%= link_to "Sign in now", new_user_session_url %>
+<%= link_to "Sign in now", new_user_session_url(subdomain: @site.subdomain) %>

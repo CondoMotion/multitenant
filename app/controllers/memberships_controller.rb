@@ -18,7 +18,7 @@ class MembershipsController < ApplicationController
 
       @user.save
       if @new_user
-        UserMailer.invite_user(@user, current_user).deliver
+        UserMailer.invite_user(@user, current_user, current_site).deliver
       end
     end
 
@@ -58,7 +58,7 @@ class MembershipsController < ApplicationController
             @membership.role = @role
             @membership.user = @user
             if @new_user
-              UserMailer.invite_user(@user, current_user).deliver
+              UserMailer.invite_user(@user, current_user, current_site).deliver
             end
             @membership.save
           end
