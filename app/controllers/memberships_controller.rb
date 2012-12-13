@@ -27,50 +27,57 @@ class MembershipsController < ApplicationController
 	end
 
   def batch_create_residents
-    params[:emails].split(",").each do |email|
-      @o =  [('a'..'z'),('A'..'Z'), (0..9)].map{|i| i.to_a}.flatten
-      @pw = (0...8).map{ @o[rand(@o.length)] }.join
-
-      @role = current_site.roles.find(params[:role])
-
-      if User.find_by_email(email).nil?
-        @user = current_company.users.new(email: email, password: @pw, password_confirmation: @pw)
-        @user.manager = 0
-        @new_user = true
-      else
-        @user = User.find_by_email(email)
-        @new_user = false
-      end
-
-      if @user.company == current_company
-        @membership = Membership.find_by_user_id_and_site_id(@user.id, current_site.id)
-        if @membership.present?
-          if @role.permission > @user.site_role(current_site).permission
-            if (@role.permission == 4 && @user.manager?) || @role.permission < 4
-              @membership.role = @role
-              @membership.save
-            end
-          end
-        else
-          if @role.permission == 4 && @user.manager?
-            @membership = current_site.memberships.new
-            @membership.role = @role
-            @membership.user = @user
-            @membership.save
-          elsif @role.permission < 4
-            @membership = current_site.memberships.new
-            @membership.role = @role
-            @membership.user = @user
-            if @new_user
-              UserMailer.invite_user(@user, current_user, current_site).deliver
-            end
-            @membership.save
-          end
-        end
-      end
-    end
-    respond_to do |format|
-      format.html { redirect_to edit_site_url, notice: 'Residents were successfully added.' }
-    end
-  end
+	  @role = current_site.roles.find(params[:role])
+	
+	  params[:emails].split(',').each do |email|
+	    @o =  [('a'..'z'),('A'..'Z'), (0..9)].map{|i| i.to_a}.flatten
+	    @pw = (0...8).map{ @o[rand(@o.length)] }.join
+	    @user = User.find_by_email(email)
+	
+	    if @user.present?       
+	      if @user.company == current_company        
+	        Membership.find_by_user_id_and_site_id(@user.id, current_site.id).present? 
+	          if @role.permission > @user.site_role(site).permission  
+	            @membership = Membership.find_by_user_id_and_site_id(@user.id, current_site.id)  
+	            if @role.name == "Manager"  
+	              @membership.role = @role if @user.manager?
+	            else  
+	              @membership.role = @role
+	            end 
+	          end   
+	        else      
+	          if role == manager    
+	            if @user.manager?
+	              @membership = current_site.memberships.new
+	              @membership.user = @user
+	              @membership.role = @role  
+	            end 
+	          else    
+	            @membership = current_site.memberships.new
+	            @membership.user = @user
+	            @membership.role = @role  
+	          end   
+	        end     
+	      end       
+	    else
+	      @user = current_company.users.new
+	      @user.email                   = email
+	      @user.password                = @pw 
+	      @user.password_confirmation   = @pw
+	      @user.manager                 = true if @role.name == "Manager"
+	
+	      @membership = current_site.memberships.new
+	      @membership.user = @user
+	      @membership.role = @role  
+	
+	      if @membership.save       
+	        UserMailer.invite_user(@user, current_user, current_site).deliver
+	      end
+	    end     
+	  end
+	
+	  respond_to do |format|
+	    format.html { redirect_to edit_site_url, notice: 'Members added.' }
+	  end
+	end  
 end
