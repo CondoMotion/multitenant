@@ -10,7 +10,7 @@ class Site < ActiveRecord::Base
   belongs_to :company
   has_many :pages, dependent: :destroy, :order => "position"
   has_many :posts, :through => :pages
-  attr_accessible :name, :subdomain, :posts_attributes, :layout, :custom_layout_content
+  attr_accessible :name, :subdomain, :posts_attributes, :layout, :custom_layout_content, :member_ids
 
   accepts_nested_attributes_for :posts
 

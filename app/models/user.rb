@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
   def site_role(site)
   	Membership.find_by_user_id_and_site_id(self.id, site.id).role
   end
+
+  def manages?(site)
+    Membership.find_by_user_id_and_site_id(self.id, site.id).present? && Membership.find_by_user_id_and_site_id(self.id, site.id).role.permission == 4
+  end
 end

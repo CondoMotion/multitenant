@@ -53,7 +53,12 @@ class MembershipsController < ApplicationController
             end
           end
         else
-          unless @role.permission == 4
+          if @role.permission == 4 && @user.manager?
+            @membership = current_site.memberships.new
+            @membership.role = @role
+            @membership.user = @user
+            @membership.save
+          elsif @role.permission < 4
             @membership = current_site.memberships.new
             @membership.role = @role
             @membership.user = @user
