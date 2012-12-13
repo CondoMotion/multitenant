@@ -2,30 +2,29 @@ class MembershipsController < ApplicationController
 	before_filter :authenticate_user!
 
   def batch_create_managers
-		params[:emails].split(",").each do |email|
-			@o =  [('a'..'z'),('A'..'Z'), (0..9)].map{|i| i.to_a}.flatten
-			@pw = (0...8).map{ @o[rand(@o.length)] }.join
-
-      if current_company.users.find_by_email(email).nil?
-        @user = current_company.users.new(email: email, password: @pw, password_confirmation: @pw)
-        @user.manager = 1
-        @new_user = true
-      else
-        @user = current_company.users.find_by_email(email)
-        @user.manager = 1
-        @new_user = false
-      end
-
-      @user.save
-      if @new_user
-        UserMailer.invite_user(@user, current_user, current_site).deliver
-      end
-    end
-
-    respond_to do |format|
-      format.html { redirect_to sites_url, notice: 'Managers were successfully added.' }
-    end
-  end
+	  params[:emails].split(',').each do |email|
+	    @o =  [('a'..'z'),('A'..'Z'), (0..9)].map{|i| i.to_a}.flatten
+	    @pw = (0...8).map{ @o[rand(@o.length)] }.join
+	    @user = User.find_by_email(email)
+	
+	    if @user.present?   
+	      @user.update_attributes(manager: true) if @user.company == current_company  
+	    else    
+	      @user = current_company.users.new
+	      @user.manager                 = true
+	      @user.email                   = email
+	      @user.password                = @pw
+	      @user.password_confirmation   = @pw
+	      if @user.save
+	        UserMailer.invite_user(@user, current_user, current_site).deliver
+	      end
+	    end
+	  end
+	
+	  respond_to do |format|
+	    format.html { redirect_to sites_url, notice: 'Managers added.' }
+	  end
+	end
 
   def batch_create_residents
     params[:emails].split(",").each do |email|
