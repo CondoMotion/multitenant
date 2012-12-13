@@ -36,8 +36,8 @@ class MembershipsController < ApplicationController
 	
 	    if @user.present?       
 	      if @user.company == current_company        
-	        Membership.find_by_user_id_and_site_id(@user.id, current_site.id).present? 
-	          if @role.permission > @user.site_role(site).permission  
+	        if Membership.find_by_user_id_and_site_id(@user.id, current_site.id).present? 
+	          if @role.permission > @user.site_role(current_site).permission  
 	            @membership = Membership.find_by_user_id_and_site_id(@user.id, current_site.id)  
 	            if @role.name == "Manager"  
 	              @membership.role = @role if @user.manager?
@@ -57,7 +57,8 @@ class MembershipsController < ApplicationController
 	            @membership.user = @user
 	            @membership.role = @role  
 	          end   
-	        end     
+	        end
+	        @membership.save     
 	      end       
 	    else
 	      @user = current_company.users.new
