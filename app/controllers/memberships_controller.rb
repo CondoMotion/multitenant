@@ -46,7 +46,7 @@ class MembershipsController < ApplicationController
 	            end 
 	          end   
 	        else      
-	          if role == manager    
+	          if @role.name == "Manager"    
 	            if @user.manager?
 	              @membership = current_site.memberships.new
 	              @membership.user = @user
