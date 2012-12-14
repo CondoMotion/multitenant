@@ -52,10 +52,10 @@ class MembershipsController < ApplicationController
 	              @membership.user = @user
 	              @membership.role = @role  
 	            end 
-	          else    
+	          else
 	            @membership = current_site.memberships.new
 	            @membership.user = @user
-	            @membership.role = @role  
+              @membership.role = @user.manager? ? current_site.roles.find_by_name("Manager") : @role
 	          end   
 	        end
 	        @membership.save     
