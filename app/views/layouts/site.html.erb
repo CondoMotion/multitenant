@@ -22,7 +22,7 @@
         <% current_site.pages.each do |page| %>
           <li><%= link_to page.name, page %></li>
         <% end %>
-        <li><%= link_to "+", edit_site_path %></li>
+        <!-- <li><%= link_to "+", edit_site_path %></li> -->
       </ul>
 
       <%= yield %>
