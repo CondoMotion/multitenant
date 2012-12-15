@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :sites, :through => :memberships
+  has_many :sites
   has_many :posts
   has_one :owned_company, :class_name => "Company", :foreign_key => "owner_id"
   belongs_to :company

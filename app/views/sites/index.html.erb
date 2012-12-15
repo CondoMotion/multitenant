@@ -37,15 +37,15 @@
       <div class="properties span9">
         <h3>Properties </h3>
         <% if @sites.length > 0 %>
-        <div class="newSiteArea">
-          <%= link_to "New Site", new_site_path, class: "btn btn-info" %>
-        </div>
-        <% @sites.each do |site| %>
-        <h4><%= link_to site.name, edit_site_url(subdomain: site.subdomain) %></h4>
-        <%= pluralize site.posts.size, "post" %>
-        | <%= link_to "View", root_url(subdomain: site.subdomain) %>
-        | <%= link_to "Destroy", site_path(site), method: :delete %>
-        <% end %>
+          <div class="newSiteArea">
+            <%= link_to "New Site", new_site_path, class: "btn btn-info" %>
+          </div>
+          <% @sites.each do |site| %>
+          <h4><%= link_to site.name, edit_site_url(subdomain: site.subdomain) %></h4>
+          <%= pluralize site.posts.size, "post" %>
+          | <%= link_to "View", root_url(subdomain: site.subdomain) %>
+          | <%= link_to "Destroy", site_path(site), method: :delete %>
+          <% end %>
 
         <% else %>
         <div class="noContent">
