@@ -8,7 +8,8 @@ class MembershipsController < ApplicationController
 	    @user = User.find_by_email(email)
 	
 	    if @user.present?   
-	      @user.update_attributes(manager: true) if @user.company == current_company  
+	      @user.manager = true if @user.company == current_company  
+        @user.save
 	    else    
 	      @user = current_company.users.new
 	      @user.manager                 = true
@@ -16,7 +17,7 @@ class MembershipsController < ApplicationController
 	      @user.password                = @pw
 	      @user.password_confirmation   = @pw
 	      if @user.save
-	        UserMailer.invite_user(@user, current_user, current_site).deliver
+	        UserMailer.invite_manager(@user, current_user).deliver
 	      end
 	    end
 	  end

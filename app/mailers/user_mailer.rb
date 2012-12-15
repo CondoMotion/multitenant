@@ -9,4 +9,11 @@ class UserMailer < ActionMailer::Base
     mail to: invitee.email, subject: "You've been invited to Condo Motion"
   end
 
+	def invite_manager(invitee, invitedBy)
+    @invitee = invitee
+    @invitedBy = invitedBy
+
+    mail to: invitee.email, subject: "You've been invited to Condo Motion"
+  end
+
 end
