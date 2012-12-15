@@ -10,13 +10,17 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
-    <div class="container">
+
+    <% if flash[:notice] %>
+      <p class="flash alert alert-success"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="flash alert alert-error"><%= flash[:error] %></p>
+    <% end %>  
+
+    <div class="container" style="padding: 20px; background: #fff; margin-top: 20px;">
       
       <%= render 'layouts/user_nav' %>
-
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash_#{name}" %>
-      <% end %>
 
       <ul class="site_menu">
         <% current_site.pages.each do |page| %>

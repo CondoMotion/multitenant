@@ -41,7 +41,7 @@ class SitesController < ApplicationController
   # POST /sites
   # POST /sites.json
   def create
-    @site = current_user.sites.new(params[:site])
+    @site = current_user.sites.build(params[:site])
 
     respond_to do |format|
       if @site.save

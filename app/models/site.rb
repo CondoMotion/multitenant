@@ -1,11 +1,13 @@
 class Site < ActiveRecord::Base
 	after_create :create_default_pages
 	after_create :create_default_roles
+	after_create :add_company_owner_as_manager
 	before_save :subdomain_param
 
-	has_many :memberships
+
+	has_many :memberships, dependent: :destroy
 	has_many :members, :through => :memberships, :source => :user
-	has_many :roles
+	has_many :roles, dependent: :destroy
   belongs_to :user
   belongs_to :company
   has_many :pages, dependent: :destroy, :order => "position"
@@ -22,6 +24,14 @@ class Site < ActiveRecord::Base
 private
 	def subdomain_param
 		self.subdomain = self.subdomain.parameterize
+	end
+
+	def add_company_owner_as_manager
+		@manager = self.company.owner
+		m = @manager.memberships.new
+		m.site = self
+		m.role = self.roles.find_by_name("Manager")
+		m.save
 	end
 
 	def create_default_pages
