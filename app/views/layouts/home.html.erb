@@ -8,8 +8,11 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <%= stylesheet_link_tag    "home", :media => "all" %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+
+<!-- TEMP
   	<link href='http://fonts.googleapis.com/css?family=Raleway:100|Varela' rel='stylesheet' type='text/css'>
+-->
   	<%= javascript_include_tag "application" %>
   	<%= csrf_meta_tags %>
 
@@ -26,7 +29,7 @@
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 
-  <body>
+  <body class="<%= controller.controller_name %>">
     <% if flash[:notice] %>
       <p class="flash alert alert-success"><%= flash[:notice] %></p>
     <% end %>

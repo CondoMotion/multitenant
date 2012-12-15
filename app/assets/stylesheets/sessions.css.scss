@@ -1,0 +1,70 @@
+@import "bootstrap";
+.sessions, .registrations{
+    background: #4B7399;
+    .box{
+        margin:80px auto;
+        @include border-radius(5px);
+        padding:15px 40px 25px 40px;
+        background:#f4f4f4;
+        border:1px solid #444;
+        @include border-radius(5px);
+        
+    }
+
+    .links{
+        line-height:14px;
+        font-size:12px;
+        margin-top:5px;
+    }
+
+    .signInBox{
+        width:230px;
+        input[type="text"] {
+            width:300px;
+        }
+        .submitArea{
+            margin-top:15px;
+        }
+    }
+
+    #error_explanation{
+        border:2px dotted red;
+        padding:10px 20px;
+        margin-bottom:20px;
+        color:red;
+        h2{
+            padding:0px;
+            margin:0px 0px 10px 0px;
+            font-size:18px;
+            line-height:24px;
+        }
+    }
+
+    .signUpBox{
+        h2{
+            margin-bottom:30px;
+        }
+        width:420px;
+        // override some bootstrap stuff
+        .form-horizontal{
+            .control-label{
+                width:150px;
+            }
+            .controls{
+                margin-left:170px;
+            }
+        }
+        .submitArea{
+            margin-left:170px;
+            margin-top:30px;
+            .btn{
+                margin-top:5px;
+                float:left;
+            }
+            .links{
+                margin-left:15px;
+                float:left;
+            }
+        }
+    }
+}
