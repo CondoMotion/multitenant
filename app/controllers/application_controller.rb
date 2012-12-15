@@ -6,13 +6,9 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     if ((['pages','posts'].include? controller_name) || (controller_name == 'sites' && action_name == 'show')) && current_site
       current_site.layout
-    elsif devise_controller?
-      if request.subdomain.present? && request.subdomain != 'www'
-        if action_name == "edit"
-          'application'
-        else
-          current_site.layout
-        end
+    elsif ['sessions', 'registrations', 'passwords'].include? controller_name
+      if request.subdomain.present? && request.subdomain != "www"
+        current_site.layout
       else
         if action_name == "edit"
           'application'
