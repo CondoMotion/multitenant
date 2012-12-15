@@ -80,9 +80,27 @@ $invalid: #C72020;
                 height:10px;
             }
         }
-        .newSiteArea{
+        .newSiteBtn{
             float:right;
-            margin-top:-40px;
+            margin-top:-50px;
+        }
+        .siteList{
+            float:left;
+            width:150px;
+            margin-top:10px;
+        }
+        .nav-tabs{
+            margin-top:20px;
+            margin-right:0px;
+        }
+        .tab-content{
+            padding:10px 40px;
+            margin-left:-1px;
+            width:420px;
+            background:white;
+            border:1px solid #ddd;
+            height:300px;
+	    @include border-radius(5px);
         }
     }
 }

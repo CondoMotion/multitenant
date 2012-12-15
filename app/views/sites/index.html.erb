@@ -17,7 +17,6 @@
 
         <div id="addManagerBtn" class="btn btn-info">Add Managers</div>
 
-
         <%= form_tag batch_create_managers_memberships_path, :method => :post do %>
         <div id="addManagerDialog">
           <strong> Invite managers by email</strong><br/>
@@ -34,20 +33,39 @@
 
       </div>  <!-- end managers -->
 
+
+
       <div class="properties span9">
         <h3>Properties </h3>
         <% if @sites.length > 0 %>
-        <div class="newSiteArea">
-          <%= link_to "New Site", new_site_path, class: "btn btn-info" %>
+        <%= link_to "New Site", new_site_path, class: "btn btn-info newSiteBtn" %>
+
+
+        <div class="siteTabs tabbable tabs-left">
+          <ul class="nav nav-tabs">
+            <% @sites.each do |site| %>
+            <li>
+              <a class="tab-link" id="tab-link<%= site.id %>"href="#">
+              <%= site.name %>
+            </a>
+            </li>
+            <% end %>
+          </ul>
+          <div class="tab-content">
+            <% @sites.each do |site| %>
+            <div class="tab-pane active" id="tab-pane<%= site.id %>">
+              <h4><%= site.name %></h4>
+              <%= pluralize site.posts.size, "post" %><br/>
+                <%= link_to "View", root_url(subdomain: site.subdomain) %>
+              | <%= link_to "Edit", edit_site_url(subdomain: site.subdomain) %>
+              | <%= link_to "Destroy", site_path(site), method: :delete %>
+            </div>
+            <% end %>
+          </div>
         </div>
-        <% @sites.each do |site| %>
-        <h4><%= link_to site.name, edit_site_url(subdomain: site.subdomain) %></h4>
-        <%= pluralize site.posts.size, "post" %>
-        | <%= link_to "View", root_url(subdomain: site.subdomain) %>
-        | <%= link_to "Destroy", site_path(site), method: :delete %>
-        <% end %>
 
         <% else %>
+
         <div class="noContent">
           <h4>Create your first property!</h4>
           <%= form_for Site.new do |f| %>
@@ -76,5 +94,4 @@
 
   </div> <!-- end container -->
 </div> <!-- end row -->
-
 
