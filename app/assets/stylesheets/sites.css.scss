@@ -1,6 +1,94 @@
 // Place all the styles related to the sites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+$invalid: #C72020;
+.sites{
+    .mainContainer{
+        padding:30px;
+    }
+    .managers{
+        padding:10px 20px;
+        background:#f4f4f4;
+        margin-top:20px;
+        min-height:450px;
+        border:1px solid #eee;
+	@include border-radius(5px);
+        .lightText{
+            color:#888;
+        }
+        ul{
+            list-style-type:none;
+            margin-left:0px;
+            li{
+                padding:3px 0px;
+            }
+        }
+        #addManagerDialog{
+            display:none;
+            padding:10px;
+            margin-left:-10px;
+            margin-right:-10px;
+            margin-top:20px;
+            border:1px dotted #bbb;
+            background:#f8f8f8;
+	    @include border-radius(5px);
+            //background:#FBFCE6;
+            .submitArea{
+                float:right;
+            }
+            textarea#emails{
+                margin-top:10px;
+                width:164px;
+                height:55px;
+                font-size:13px;
+            }
+            #emailError{
+                margin-top:10px;
+                color: $invalid;
+                font-size:12px;
+                text-align:right;
+            }
+        }
+    }
+    .properties{
+        margin-top:20px;
+        background: #f4f4f4;
+        padding: 10px 30px 30px 30px;
+        min-height:450px;
+        border:1px solid #eee;
+	@include border-radius(5px);
+        .noContent {
+            margin:20px auto 0px auto;
+            padding:20px 25px 0px 25px;
+            width:225px;
+            border:1px dotted #bbb;
+            background:#f8f8f8;
+	    @include border-radius(5px);
+            h4{
+                margin-bottom:20px;
+            }
+            .submitArea{
+                float:right;
+                margin:5px 10px 0px 0px;
+            }
+            #newSiteErr{
+                color: $invalid;
+                margin-top:5px;
+                font-size:12px;
+                text-align:right;
+                height:10px;
+            }
+        }
+        .newSiteArea{
+            float:right;
+            margin-top:-40px;
+        }
+    }
+}
+
+
+// OB: Do we need any of this stuff??
 #sites h2 {
   margin-bottom: 5px;
   margin-top: 20px;
