@@ -8,11 +8,17 @@ class ApplicationController < ActionController::Base
       current_site.layout
     elsif devise_controller?
       if request.subdomain.present? && request.subdomain != 'www'
-        current_site.layout
-      # elsif action_name == "edit"
-      #   'application'
+        if action_name == "edit"
+          'application'
+        else
+          current_site.layout
+        end
       else
-        'home'
+        if action_name == "edit"
+          'application'
+        else
+          'home'
+        end
       end
     else
       'application'

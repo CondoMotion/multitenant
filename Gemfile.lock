@@ -148,6 +148,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   liquid
+  newrelic_rpm
   rails (= 3.2.8)
   rmagick
   sass-rails (~> 3.2.3)

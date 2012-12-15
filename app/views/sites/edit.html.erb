@@ -1,66 +1,64 @@
-<h1>Editing <%= link_to @site.name, root_path, class: "site_name" %></h1>
+<div class="container">
+  <h1>Editing <%= link_to @site.name, root_path, class: "site_name" %></h1>
 
-<h3>Settings</h3>
+  <h3>Settings</h3>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<hr>
+  <hr>
 
-<h3>Pages</h3>
+  <h3>Pages</h3>
 
-<ul id="pages" data-update-url="<%= sort_pages_url %>">
-<% @site.pages.each do |page| %>
-  <%= content_tag_for :li, page do %>
-    <span class="handle">[drag]</span>
-    <%= link_to page.name, page %> | <%= link_to 'Edit', edit_page_path(page) %> | <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <ul id="pages" data-update-url="<%= sort_pages_url %>">
+  <% @site.pages.each do |page| %>
+    <%= content_tag_for :li, page do %>
+      <span class="handle">[drag]</span>
+      <%= link_to page.name, page %> | <%= link_to 'Edit', edit_page_path(page) %> | <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
   <% end %>
-<% end %>
-</ul>
+  </ul>
 
-<!-- <h4>New Page</h4>
-<%= render 'pages/form' %> -->
+  <!-- <h4>New Page</h4>
+  <%= render 'pages/form' %> -->
 
-<hr>
+  <hr>
 
-<div class="row">
-  <div class="span6">
-    <h3>Managers</h3>
-    <%= form_for @site do |f| %>
-      <%= hidden_field_tag "site[member_ids][]", nil %>
-      <% current_company.users.where(:manager => true).each do |user| %>
-        <label class="checkbox">
-          <%= check_box_tag "site[member_ids][]", user.id, user.manages?(@site), id: dom_id(user) %> <%= user.email %>
-        </label>
+  <div class="row">
+    <div class="span6">
+      <h3>Managers</h3>
+      <%= form_for @site do |f| %>
+        <%= hidden_field_tag "site[member_ids][]", nil %>
+        <% current_company.users.where(:manager => true).each do |user| %>
+          <label class="checkbox">
+            <%= check_box_tag "site[member_ids][]", user.id, user.manages?(@site), id: dom_id(user) %> <%= user.email %>
+          </label>
+        <% end %>
+        <% @site.memberships.each do |m| %>
+          <% unless m.role.name == "Manager" %>
+           <%= hidden_field_tag "site[member_ids][]", m.user.id, id: dom_id(m.user) %>
+          <% end %>
+        <% end %>
+        <%= f.submit "Save", class: "btn" %>
       <% end %>
-      <% @site.memberships.each do |m| %>
-        <% unless m.role.name == "Manager" %>
-         <%= hidden_field_tag "site[member_ids][]", m.user.id, id: dom_id(m.user) %>
+    </div>
+    <div class="span6">
+      <h3>Residents</h3>
+      <ul id="members">
+      <% @site.members.each do |member| %>
+        <%= content_tag_for :li, member do %>
+          <%= member.email %> (<%= member.site_role(@site).name %>)
         <% end %>
       <% end %>
-      <%= f.submit "Save", class: "btn" %>
-    <% end %>
-  </div>
-  <div class="span6">
-    <h3>Residents</h3>
-    <ul id="members">
-    <% @site.members.each do |member| %>
-      <%= content_tag_for :li, member do %>
-        <%= member.email %> (<%= member.site_role(@site).name %>)
-      <% end %>
-    <% end %>
-    </ul>
+      </ul>
 
-    <%= form_tag batch_create_residents_memberships_path, :method => :post do %>
-      <%= label_tag "Add residents (emails separated by commas)" %>
-      <%= text_area_tag :emails %><br>
-      <%= select("role", "", current_site.roles.all.collect {|r| [ r.name, r.id ] }, {}, {id: "role", name: "role"}) %>
-      <div>
-        <%= submit_tag "Invite!", class: "btn" %>
-      </div>
-    <% end %>
+      <%= form_tag batch_create_residents_memberships_path, :method => :post do %>
+        <%= label_tag "Add residents (emails separated by commas)" %>
+        <%= text_area_tag :emails %><br>
+        <%= select("role", "", current_site.roles.all.collect {|r| [ r.name, r.id ] }, {}, {id: "role", name: "role"}) %>
+        <div>
+          <%= submit_tag "Invite!", class: "btn" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
-
-
-
-
