@@ -49,8 +49,8 @@ $(document).ready ->
                 false
         # initially, just show the first tab
         $('.tab-pane').hide();
-        $('#tab-link1').parent().addClass('active')
-        $('#tab-pane1').show().addClass('active');
+        $('.siteTabs').find('li').first().addClass('active');
+        $('.siteTabs').find('.tab-pane').first().show().addClass('active');
         
         
 # OB: what is this for?
