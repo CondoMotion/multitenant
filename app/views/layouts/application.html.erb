@@ -39,7 +39,7 @@
     <div class="row mainHeader">
       <div class="container">
       <div id="logo">
-        <%= link_to image_tag('logo.png', :style => "opacity: 0.8;"), user_signed_in? ? sites_path : root_url %>
+        <%= link_to image_tag('logo.png', :style => "opacity: 0.8;"), user_signed_in? ? sites_url(subdomain: "www") : root_url %>
       </div>
       <div class="accountInfo">
         <%= render 'layouts/user_nav' %>

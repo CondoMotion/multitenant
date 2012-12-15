@@ -40,7 +40,7 @@
 			<div class="container" style="padding: 40px 0px;">
         <div class="row">
   				<div class="span12">
-  		  		<div id="logo"><%= link_to image_tag('logo.png', :style => "opacity: 0.8;"), user_signed_in? ? sites_path : root_url %></div>
+  		  		<div id="logo"><%= link_to image_tag('logo.png', :style => "opacity: 0.8;"), user_signed_in? ? sites_url(subdomain: "www") : root_url %></div>
   		  		<ul id="header_nav">
   						<li><%= link_to "Tour", root_url %></li>
   						<li><%= link_to "Pricing", pricing_path %></li>
