@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(:version => 20121209190232) do
   add_index "pages", ["slug"], :name => "index_pages_on_slug"
 
   create_table "posts", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "company_id"
     t.integer  "user_id"
     t.integer  "page_id"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20121209190232) do
     t.string   "post_type"
     t.text     "content"
     t.string   "attachment"
+    t.boolean  "has_attachment", :default => true
   end
 
   add_index "posts", ["company_id"], :name => "index_posts_on_company_id"
