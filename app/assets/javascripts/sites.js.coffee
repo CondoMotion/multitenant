@@ -38,7 +38,21 @@ $(document).ready ->
                 if $('#site_subdomain').val().length == 0
                         $('#newSiteErr').text('subdomain required')
                         return false
-                                                
+
+        # site lise item click function
+        $('.tab-link').click ->
+                id = $(this).attr('id').substring(8)
+                $('.tab-link').parent().removeClass('active')
+                $(this).parent().addClass('active')
+                $('.tab-pane').hide().removeClass('active')
+                $('#tab-pane'+id).show().addClass('active')
+                false
+        # initially, just show the first tab
+        $('.tab-pane').hide();
+        $('.siteTabs').find('li').first().addClass('active');
+        $('.siteTabs').find('.tab-pane').first().show().addClass('active');
+        
+        
 # OB: what is this for?
 $ ->
   fields.toggle()
