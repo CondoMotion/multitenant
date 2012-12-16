@@ -91,12 +91,10 @@ $invalid: #C72020;
         }
         .nav-tabs{
             margin-top:20px;
-            margin-right:0px;
+            margin-right:-1px;
         }
         .tab-content{
             padding:10px 40px;
-            margin-left:-1px;
-            width:420px;
             background:white;
             border:1px solid #ddd;
             height:300px;
