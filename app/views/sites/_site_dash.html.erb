@@ -1,0 +1,39 @@
+<div class="siteDash">
+  <h4><%= site.name %></h4>
+  <div class="pull-left">
+    <%= link_to "View", root_url(subdomain: site.subdomain) %>
+    | <%= link_to "Edit", edit_site_url(subdomain: site.subdomain) %>
+    | <%= link_to "Delete", site_path(site), method: :delete %>
+    <br/>
+    <br/>
+    <%= pluralize site.posts.size, "post" %><br/>
+  </div>
+  
+  <div class="assignedMngrs">
+    <h5>Assigned Managers:</h5>
+    <div class="viewMngrs" id="viewMngrs<%= site.id %>">
+      <ul>
+        <% current_company.users.where(:manager => true).each do |user| 
+        if user.manages?(site) %>
+        <li><%= user.email %></li>
+        <% end %>
+        <% end %>
+      </ul>
+      <a class="editMngrLink" id="editMngrLink<%= site.id %>" href="#">
+        change managers
+      </a>
+    </div>
+  
+    <div class="editMngrs" id="editMngrs<%= site.id %>">
+      <% current_company.users.where(:manager => true).each do |user| %>
+      <label class="checkbox">
+        <%= check_box_tag "mngrCheck", user.id, user.manages?(site), id: dom_id(user) %>      <%= user.email %>
+      </label>
+      <% end %>
+      <div class="actions">
+        <a href="#" class="editMngrCancel" id="editMngrCancel<%= site.id %>">cancel</a>
+        <div id="editMngrSubmit" class="btn btn-info">Save</div>
+      </div>
+    </div>
+  </div>
+</div>

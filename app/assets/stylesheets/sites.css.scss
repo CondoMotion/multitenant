@@ -7,6 +7,7 @@ $invalid: #C72020;
     .mainContainer{
         padding:30px;
     }
+
     .managers{
         padding:10px 20px;
         background:#f4f4f4;
@@ -51,7 +52,8 @@ $invalid: #C72020;
             }
         }
     }
-    .properties{
+
+    .sites{
         margin-top:20px;
         background: #f4f4f4;
         padding: 10px 30px 30px 30px;
@@ -99,6 +101,60 @@ $invalid: #C72020;
             border:1px solid #ddd;
             height:300px;
 	    @include border-radius(5px);
+        }
+        .siteDash{
+            .assignedMngrs{
+                h5{ margin:0px 0px 5px 0px;}
+                float:right;
+                width:200px;
+                border-left:1px solid #ddd;
+                padding-left:40px;
+                .viewMngrs{
+                    ul{
+                        margin:0px 0px 5px 15px;
+                        li{
+                            padding:2px 0px;
+                        }
+                    }
+
+                    .editMngrLink{
+                        margin-left:10px;
+                    }
+                }
+                .editMngrs{
+                    display:none;
+                    border:1px dotted #ddd;
+                    padding:10px;
+                    .actions{
+                        margin-top:5px;
+                        border-top:1px solid #ddd;
+                        text-align:right;
+                        padding:10px 5px 0px 0px;
+                        .editMngrCancel{
+                            margin-right:10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .newSite {
+        .formBox{
+            margin:60px auto 0px auto;
+            width:220px;
+            background:#f4f4f4;
+            border:1px solid #ddd;
+            padding:10px 40px;
+	    @include border-radius(5px);
+            .actions{
+                margin-top:5px;
+                float:right;
+            }
+        }
+        .backLink{
+            width:300px;
+            margin: 10px auto 0px auto;
         }
     }
 }

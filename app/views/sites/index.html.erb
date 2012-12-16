@@ -35,8 +35,8 @@
 
 
 
-      <div class="properties span9">
-        <h3>Properties </h3>
+      <div class="sites span9">
+        <h3>Sites</h3>
         <% if @sites.length > 0 %>
 
         <%= link_to "New Site", new_site_path, class: "btn btn-info newSiteBtn" %>
@@ -51,14 +51,11 @@
             </li>
             <% end %>
           </ul>
+
           <div class="tab-content">
             <% @sites.each do |site| %>
             <div class="tab-pane active" id="tab-pane<%= site.id %>">
-              <h4><%= site.name %></h4>
-              <%= pluralize site.posts.size, "post" %><br/>
-                <%= link_to "View", root_url(subdomain: site.subdomain) %>
-              | <%= link_to "Edit", edit_site_url(subdomain: site.subdomain) %>
-              | <%= link_to "Destroy", site_path(site), method: :delete %>
+              <%= render "site_dash", :site => site%>
             </div>
             <% end %>
           </div>
@@ -67,7 +64,7 @@
         <% else %>
 
         <div class="noContent">
-          <h4>Create your first property!</h4>
+          <h4>Create your first site!</h4>
           <%= form_for Site.new do |f| %>
           <div class="field">
             <%= f.text_field :name, placeholder: "Name" %>
@@ -87,7 +84,7 @@
           <% end %>
         </div>
         <% end %>
-      </div> <!-- end properties -->
+      </div> <!-- end sites -->
 
 
     </div> <!-- end row-fluid -->

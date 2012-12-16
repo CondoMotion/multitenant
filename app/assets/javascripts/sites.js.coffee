@@ -15,7 +15,7 @@ validateEmails = (input) ->
                         return false
         return true
 
-$(document).ready ->
+$ ->
         $('#addManagerBtn').click ->
                 $('#addManagerDialog').show()
                 $(this).hide();
@@ -51,20 +51,37 @@ $(document).ready ->
         $('.tab-pane').hide();
         $('.siteTabs').find('li').first().addClass('active');
         $('.siteTabs').find('.tab-pane').first().show().addClass('active');
+
+        # editing managers
+        $('.editMngrLink').click ->
+                id = $(this).attr('id').substring(12)
+                $('#editMngrs'+id).show();
+                $('#viewMngrs'+id).hide();
+        $('.editMngrCancel').click ->
+                # TODO: restore state of checkboxes
+                id = $(this).attr('id').substring(14)
+                $('#editMngrs'+id).hide();
+                $('#viewMngrs'+id).show();
+        $('#editMngrSubmit').click ->
+                alert('TODO STILL')
+                
+
         
+
+
         
-# OB: what is this for?
-$ ->
-  fields.toggle()
-  $("#site_layout").change ->
-    fields.toggle()
+        # OB: is this still being used?
+        #fields.toggle()
+        #        $("#site_layout").change ->
+        #        fields.toggle()
 
-  $("#site_name").keyup ->
-  	$('.site_name').text($(this).val())
+        #$("#site_name").keyup ->
+        #        $('.site_name').text($(this).val())
 
 
-fields = toggle: ->
-  if $("#site_layout").val() is "custom"
-    $("#custom_layout_fields").show()
-  else
-    $("#custom_layout_fields").hide()
+        #fields = toggle: ->
+        #  if $("#site_layout").val() is "custom"
+        #    $("#custom_layout_fields").show()
+        #  else
+        #    $("#custom_layout_fields").hide()
+        
