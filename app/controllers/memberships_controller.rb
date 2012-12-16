@@ -82,4 +82,5 @@ class MembershipsController < ApplicationController
 	    format.html { redirect_to edit_site_url, notice: 'Members added.' }
 	  end
 	end  
+
 end
