@@ -13,10 +13,8 @@
     <h5>Assigned Managers:</h5>
     <div class="viewMngrs" id="viewMngrs<%= site.id %>">
       <ul>
-        <% current_company.users.where(:manager => true).each do |user| 
-        if user.manages?(site) %>
-        <li><%= user.email %></li>
-        <% end %>
+        <% site.managers.each do |manager| %>
+          <li><%= manager.email %></li>
         <% end %>
       </ul>
       <a class="editMngrLink" id="editMngrLink<%= site.id %>" href="#">

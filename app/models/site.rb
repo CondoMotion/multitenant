@@ -4,15 +4,18 @@ class Site < ActiveRecord::Base
 	after_create :add_company_owner_as_manager
 	before_save :subdomain_param
 
-
 	has_many :memberships, dependent: :destroy
 	has_many :members, :through => :memberships, :source => :user
+
+	has_many :managerships, dependent: :destroy
+	has_many :managers, :through => :managerships, :source => :user
+
 	has_many :roles, dependent: :destroy
   belongs_to :user
   belongs_to :company
   has_many :pages, dependent: :destroy, :order => "position"
   has_many :posts, :through => :pages
-  attr_accessible :name, :subdomain, :posts_attributes, :layout, :custom_layout_content, :member_ids
+  attr_accessible :name, :subdomain, :posts_attributes, :layout, :custom_layout_content, :manager_ids
 
   accepts_nested_attributes_for :posts
 
@@ -45,6 +48,5 @@ private
 		@role = self.roles.create(name: "Resident", permission: 1)
 		@role = self.roles.create(name: "Admin", permission: 2)
 		@role = self.roles.create(name: "Trustee", permission: 3)
-		@role = self.roles.create(name: "Manager", permission: 4)
 	end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209190232) do
+ActiveRecord::Schema.define(:version => 20121217053623) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,18 @@ ActiveRecord::Schema.define(:version => 20121209190232) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "managerships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "site_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "company_id"
+  end
+
+  add_index "managerships", ["company_id"], :name => "index_managerships_on_company_id"
+  add_index "managerships", ["site_id"], :name => "index_managerships_on_site_id"
+  add_index "managerships", ["user_id"], :name => "index_managerships_on_user_id"
 
   create_table "memberships", :force => true do |t|
     t.integer  "site_id"

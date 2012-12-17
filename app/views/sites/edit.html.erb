@@ -27,16 +27,11 @@
     <div class="span6">
       <h3>Managers</h3>
       <%= form_for @site do |f| %>
-        <%= hidden_field_tag "site[member_ids][]", nil %>
+        <%= hidden_field_tag "site[manager_ids][]", nil %>
         <% current_company.users.where(:manager => true).each do |user| %>
           <label class="checkbox">
-            <%= check_box_tag "site[member_ids][]", user.id, user.manages?(@site), id: dom_id(user) %> <%= user.email %>
+            <%= check_box_tag "site[manager_ids][]", user.id, user.manages?(@site), id: dom_id(user) %> <%= user.email %>
           </label>
-        <% end %>
-        <% @site.memberships.each do |m| %>
-          <% unless m.role.name == "Manager" %>
-           <%= hidden_field_tag "site[member_ids][]", m.user.id, id: dom_id(m.user) %>
-          <% end %>
         <% end %>
         <%= f.submit "Save", class: "btn" %>
       <% end %>
