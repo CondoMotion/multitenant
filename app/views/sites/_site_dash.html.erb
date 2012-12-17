@@ -23,15 +23,20 @@
     </div>
   
     <div class="editMngrs" id="editMngrs<%= site.id %>">
-      <% current_company.users.where(:manager => true).each do |user| %>
-      <label class="checkbox">
-        <%= check_box_tag "mngrCheck", user.id, user.manages?(site), id: dom_id(user) %>      <%= user.email %>
-      </label>
+      <%= form_for site do |f| %>
+        <%= hidden_field_tag "site[manager_ids][]", nil %>
+        <% current_company.users.where(:manager => true).each do |user| %>
+          <label class="checkbox">
+            <%= check_box_tag "site[manager_ids][]", user.id, user.manages?(site), id: dom_id(user) %> <%= user.email %>
+          </label>
+        <% end %>
+
+        <div class="actions">
+          <a href="#" class="editMngrCancel" id="editMngrCancel<%= site.id %>">cancel</a>
+          <%= f.submit "Save", class: "btn btn-info", id: "editMngrSubmit" %>
+        </div>
+        
       <% end %>
-      <div class="actions">
-        <a href="#" class="editMngrCancel" id="editMngrCancel<%= site.id %>">cancel</a>
-        <div id="editMngrSubmit" class="btn btn-info">Save</div>
-      </div>
     </div>
   </div>
 </div>
