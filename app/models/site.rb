@@ -31,9 +31,8 @@ private
 
 	def add_company_owner_as_manager
 		@manager = self.company.owner
-		m = @manager.memberships.new
+		m = @manager.managerships.new
 		m.site = self
-		m.role = self.roles.find_by_name("Manager")
 		m.save
 	end
 
