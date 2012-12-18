@@ -61,7 +61,11 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.update_attributes(params[:site])
-        format.html { redirect_to edit_site_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
+        if params[:site][:manager_ids]
+          format.html { redirect_to sites_url(subdomain: "www"), notice: 'Site was successfully updated.' }
+        else
+         format.html { redirect_to edit_site_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
+        end
         format.json { head :no_content }
         format.js
       else

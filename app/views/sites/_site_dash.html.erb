@@ -14,10 +14,8 @@
     <div class="viewMngrs" id="viewMngrs<%= site.id %>">
       <div class="mngrList">
         <ul>
-          <% current_company.users.where(:manager => true).each do |user| 
-            if user.manages?(site) %>
-              <li><%= user.email %></li>
-            <% end %>
+          <% site.managers.each do |manager| %>
+            <li><%= manager.email %></li>
           <% end %>
         </ul>
       </div>
@@ -30,20 +28,15 @@
       <%= form_for site, :remote => true do |f| %>
         <%= hidden_field_tag "site[member_ids][]", nil %>
         <% current_company.users.where(:manager => true).each do |user| %>
-        <label class="checkbox">
-          <%= check_box_tag "site[member_ids][]", user.id, 
-              user.manages?(site), id: dom_id(user) %>
-          <%= user.email %>
-        </label>
-        <% end %>
-        <% site.memberships.each do |m| %>
-          <% unless m.role.name == "Manager" %>
-           <%= hidden_field_tag "site[member_ids][]", m.user.id, 
-               id: dom_id(m.user) %>
-          <% end %>
+          <label class="checkbox">
+            <%= check_box_tag "site[member_ids][]", user.id, 
+                user.manages?(site), id: dom_id(user) %>
+            <%= user.email %>
+          </label>
         <% end %>
         <div class="actions">
-          <a href="#" class="editMngrCancel" id="editMngrCancel<%= site.id %>">cancel</a>
+          <a href="#" class="editMngrCancel" id="editMngrCancel<%= site.id %>">
+            cancel</a>
           <%= f.submit "Save", class: "btn btn-info"%>
         </div>
       <% end %>

@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :sites, :through => :memberships
+
+  has_many :managerships, dependent: :destroy
+  has_many :sites, :through => :managerships
+
   has_many :sites
   has_many :posts
   has_one :owned_company, :class_name => "Company", :foreign_key => "owner_id"
@@ -25,6 +29,6 @@ class User < ActiveRecord::Base
   end
 
   def manages?(site)
-    Membership.find_by_user_id_and_site_id(self.id, site.id).present? && Membership.find_by_user_id_and_site_id(self.id, site.id).role.permission == 4
+    Managership.find_by_user_id_and_site_id(self.id, site.id).present?
   end
 end
