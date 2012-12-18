@@ -1,5 +1,4 @@
 var id = <%= @site.id %>;
-
 $('#tab-pane'+id).html("<%=j render 'site_dash', :site => @site %>");
 $('#editMngrs'+id).hide();
 $('#viewMngrs'+id).show();
