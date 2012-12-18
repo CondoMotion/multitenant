@@ -1,4 +1,4 @@
-<div class="siteDash">
+<div class="siteDash" id="siteDash<%= site.id %>">
   <h4><%= site.name %></h4>
   <div class="pull-left">
     <%= link_to "View", root_url(subdomain: site.subdomain) %>
@@ -12,28 +12,41 @@
   <div class="assignedMngrs">
     <h5>Assigned Managers:</h5>
     <div class="viewMngrs" id="viewMngrs<%= site.id %>">
-      <ul>
-        <% current_company.users.where(:manager => true).each do |user| 
-        if user.manages?(site) %>
-        <li><%= user.email %></li>
-        <% end %>
-        <% end %>
-      </ul>
+      <div class="mngrList">
+        <ul>
+          <% current_company.users.where(:manager => true).each do |user| 
+            if user.manages?(site) %>
+              <li><%= user.email %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
       <a class="editMngrLink" id="editMngrLink<%= site.id %>" href="#">
         change managers
       </a>
     </div>
   
     <div class="editMngrs" id="editMngrs<%= site.id %>">
-      <% current_company.users.where(:manager => true).each do |user| %>
-      <label class="checkbox">
-        <%= check_box_tag "mngrCheck", user.id, user.manages?(site), id: dom_id(user) %>      <%= user.email %>
-      </label>
+      <%= form_for site, :remote => true do |f| %>
+        <%= hidden_field_tag "site[member_ids][]", nil %>
+        <% current_company.users.where(:manager => true).each do |user| %>
+        <label class="checkbox">
+          <%= check_box_tag "site[member_ids][]", user.id, 
+              user.manages?(site), id: dom_id(user) %>
+          <%= user.email %>
+        </label>
+        <% end %>
+        <% site.memberships.each do |m| %>
+          <% unless m.role.name == "Manager" %>
+           <%= hidden_field_tag "site[member_ids][]", m.user.id, 
+               id: dom_id(m.user) %>
+          <% end %>
+        <% end %>
+        <div class="actions">
+          <a href="#" class="editMngrCancel" id="editMngrCancel<%= site.id %>">cancel</a>
+          <%= f.submit "Save", class: "btn btn-info"%>
+        </div>
       <% end %>
-      <div class="actions">
-        <a href="#" class="editMngrCancel" id="editMngrCancel<%= site.id %>">cancel</a>
-        <div id="editMngrSubmit" class="btn btn-info">Save</div>
-      </div>
     </div>
   </div>
 </div>
