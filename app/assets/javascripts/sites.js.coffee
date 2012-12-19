@@ -54,21 +54,24 @@ $ ->
 
         
         # editing managers
-        $('.editMngrLink').live 'click', (event) ->
+        #
+        $(document).on 'click', '.editMngrLink', (event) ->
                 event.preventDefault()
                 id = $(this).attr('id').substring(12)
                 $('#editMngrs'+id).show();
                 $('#viewMngrs'+id).hide();
-        $('.editMngrCancel').live 'click', (event) ->
+
+        $(document).on 'click', '.editMngrCancel', (event) ->
                 event.preventDefault()
                 # TODO: restore state of checkboxes
                 id = $(this).attr('id').substring(14)
                 $('#editMngrs'+id).hide();
                 $('#viewMngrs'+id).show();
-        $('.editMngrSubmit').live 'click', (event) ->
-                alert('TODO STILL')
 
-        
+        $(document).on 'click', '.editMngrSubmit', (event) ->
+                $(this).addClass('disabled')
+                $(this).parent().find('.spinner').show()
+
         # OB: is this still being used?
         #fields.toggle()
         #        $("#site_layout").change ->

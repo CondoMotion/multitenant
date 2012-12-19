@@ -6,11 +6,13 @@
     | <%= link_to "Delete", site_path(site), method: :delete %>
     <br/>
     <br/>
+    <div class="btn">New Post</div>
+    <hr/>
     <%= pluralize site.posts.size, "post" %><br/>
   </div>
   
   <div class="assignedMngrs">
-    <h5>Assigned Managers:</h5>
+    <h5>Managers Assigned:</h5>
     <div class="viewMngrs" id="viewMngrs<%= site.id %>">
       <div class="mngrList">
         <ul>
@@ -20,7 +22,7 @@
         </ul>
       </div>
       <a class="editMngrLink" id="editMngrLink<%= site.id %>" href="#">
-        change managers
+        Change Managers
       </a>
     </div>
   
@@ -35,9 +37,10 @@
           </label>
         <% end %>
         <div class="actions">
+          <%= image_tag "loading.gif", class: "spinner" %>
           <a href="#" class="editMngrCancel" id="editMngrCancel<%= site.id %>">
             cancel</a>
-          <%= f.submit "Save", class: "btn btn-info"%>
+          <%= f.submit "Save", class: "btn btn-info editMngrSubmit" %>
         </div>
       <% end %>
     </div>

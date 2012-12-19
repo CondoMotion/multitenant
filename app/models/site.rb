@@ -4,7 +4,7 @@ class Site < ActiveRecord::Base
 	after_create :add_company_owner_as_manager
 	before_save :subdomain_param
 
-	has_many :memberships, dependent: :destroy
+  has_many :memberships, dependent: :destroy
 	has_many :members, :through => :memberships, :source => :user
 
 	has_many :managerships, dependent: :destroy

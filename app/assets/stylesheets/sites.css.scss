@@ -126,6 +126,7 @@ $invalid: #C72020;
 
                     .editMngrLink{
                         margin-left:10px;
+                        font-size:12px;
                     }
                 }
                 .editMngrs{
@@ -140,6 +141,11 @@ $invalid: #C72020;
                         padding:10px 5px 0px 0px;
                         .editMngrCancel{
                             margin-right:10px;
+                        }
+                        .spinner{
+                            display:none;
+                            margin-right:30px;
+                            background:pink;
                         }
                     }
                 }
