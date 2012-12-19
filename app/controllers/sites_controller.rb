@@ -67,6 +67,7 @@ class SitesController < ApplicationController
          format.html { redirect_to edit_site_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
         end
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @site.errors, status: :unprocessable_entity }

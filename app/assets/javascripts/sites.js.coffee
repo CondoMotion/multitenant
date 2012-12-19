@@ -7,7 +7,6 @@
 validateEmail = (email) ->
         re = /\S+@\S+\.\S+/
         re.test(email)
-
 validateEmails = (input) ->
         emails = input.split(/,|;/)
         for email in emails
@@ -15,7 +14,9 @@ validateEmails = (input) ->
                         return false
         return true
 
+# Document Ready
 $ ->
+        # add manager actions
         $('#addManagerBtn').click ->
                 $('#addManagerDialog').show()
                 $(this).hide();
@@ -24,7 +25,6 @@ $ ->
                 $('#addManagerBtn').show()
                 $('#emails').val('')
                 $('#emailError').text('')
-                        
         $('#addManagerSubmit').click ->
                 if !validateEmails($('#emails').val())
                         $('#emailError').text('Invalid email format');
@@ -39,7 +39,7 @@ $ ->
                         $('#newSiteErr').text('subdomain required')
                         return false
 
-        # site lise item click function
+        # site tabs
         $('.tab-link').click ->
                 id = $(this).attr('id').substring(8)
                 $('.tab-link').parent().removeClass('active')
@@ -52,22 +52,21 @@ $ ->
         $('.siteTabs').find('li').first().addClass('active');
         $('.siteTabs').find('.tab-pane').first().show().addClass('active');
 
+        
         # editing managers
-        $('.editMngrLink').click ->
+        $('.editMngrLink').live 'click', (event) ->
+                event.preventDefault()
                 id = $(this).attr('id').substring(12)
                 $('#editMngrs'+id).show();
                 $('#viewMngrs'+id).hide();
-        $('.editMngrCancel').click ->
+        $('.editMngrCancel').live 'click', (event) ->
+                event.preventDefault()
                 # TODO: restore state of checkboxes
                 id = $(this).attr('id').substring(14)
                 $('#editMngrs'+id).hide();
                 $('#viewMngrs'+id).show();
-        $('#editMngrSubmit').click ->
+        $('.editMngrSubmit').live 'click', (event) ->
                 alert('TODO STILL')
-                
-
-        
-
 
         
         # OB: is this still being used?

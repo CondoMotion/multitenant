@@ -94,6 +94,13 @@ $invalid: #C72020;
         .nav-tabs{
             margin-top:20px;
             margin-right:-1px;
+            li {
+                a{
+                    color:#444;
+                    border:1px solid #ddd;
+                    border-right:none;
+                }
+            }
         }
         .tab-content{
             padding:10px 40px;
@@ -124,6 +131,7 @@ $invalid: #C72020;
                 .editMngrs{
                     display:none;
                     border:1px dotted #ddd;
+                    background:#f8f8f8;
                     padding:10px;
                     .actions{
                         margin-top:5px;
@@ -160,7 +168,7 @@ $invalid: #C72020;
 }
 
 
-// OB: Do we need any of this stuff??
+// OB: Do we still need any of this stuff??
 #sites h2 {
   margin-bottom: 5px;
   margin-top: 20px;
