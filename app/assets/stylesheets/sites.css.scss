@@ -197,6 +197,9 @@ $invalid: #C72020;
 		margin-right: 5px;
 		padding: 5px;
 		background: #f1f1f1;
+      &.active {
+        background: #333;
+      }
 		a {
 			padding: 5px 5px; 
 			text-decoration: none;
