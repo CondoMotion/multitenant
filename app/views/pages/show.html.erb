@@ -2,7 +2,7 @@
 
 <% if @page.has_posts? && user_signed_in? %>
 	<div>
-		<a href="#myModal" role="button" class="btn" data-toggle="modal">New <%= @page.post_type.singularize %></a>
+		<%= link_to "New #{@page.post_type.singularize}", "#myModal", role: 'button', class: 'btn', data: {toggle: 'modal'} %>
 		<%= render "posts/#{@page.post_type.downcase}_form" %>
 	</div>
 <% end %>
