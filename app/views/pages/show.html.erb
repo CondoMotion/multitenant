@@ -1,8 +1,10 @@
 <%= raw best_in_place_if user_signed_in?, @page, :content, type: :textarea, sanitize: false %>
 
 <% if @page.has_posts? && user_signed_in? %>
-  <p>New <%= @page.post_type.singularize %></p>
-  <%= render "posts/#{@page.post_type.downcase}_form" %>
+	<div>
+		<a href="#myModal" role="button" class="btn" data-toggle="modal">New <%= @page.post_type.singularize %></a>
+		<%= render "posts/#{@page.post_type.downcase}_form" %>
+	</div>
 <% end %>
 
 <% @page.posts.each do |post| %>

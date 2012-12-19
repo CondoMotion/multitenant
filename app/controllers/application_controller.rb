@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
   end
 
 private
+  def on_site? 
+    request.subdomain.present? && request.subdomain != "www"
+  end
+  helper_method :on_site?
 
   def current_site
     if request.subdomain.present? && request.subdomain != "www"
