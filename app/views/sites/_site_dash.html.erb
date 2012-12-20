@@ -7,6 +7,9 @@
     <br/>
     <br/>
 
+
+
+
     <!-- TODO: move this somewhere else? controller / helper / model ??? -->
     <% newsPageId = site.pages.where(:post_type => "news").first().id  %>
 
@@ -14,6 +17,29 @@
        id="newPostBtn<%= newsPageId %>" data-toggle="modal">
       Post News
     </a>
+
+
+
+
+    <%= link_to "New Post", "#new_post_modal", role: 'button', class: 'btn', data: {toggle: 'modal'} %>
+
+    <div id="new_post_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">New Post</h3>
+      </div>
+      <div class="modal-body">
+        TODO: Need to select page, then create a post instance of the proper type, then render the right form.
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <%= submit_tag "Save", class: "btn btn-primary" %>
+      </div>
+    </div>
+
+
+
+
 
     <hr/>
     <%= pluralize site.posts.size, "post" %><br/>
