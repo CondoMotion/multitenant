@@ -6,7 +6,15 @@
     | <%= link_to "Delete", site_path(site), method: :delete %>
     <br/>
     <br/>
-    <div class="btn">New Post</div>
+
+    <!-- TODO: move this somewhere else? controller / helper / model ??? -->
+    <% newsPageId = site.pages.where(:post_type => "news").first().id  %>
+
+    <a href="#newsModal" role="button" class="newPostBtn btn" 
+       id="newPostBtn<%= newsPageId %>" data-toggle="modal">
+      Post News
+    </a>
+
     <hr/>
     <%= pluralize site.posts.size, "post" %><br/>
   </div>
@@ -45,4 +53,6 @@
       <% end %>
     </div>
   </div>
+
+
 </div>

@@ -54,23 +54,31 @@ $ ->
 
         
         # editing managers
-        #
         $(document).on 'click', '.editMngrLink', (event) ->
                 event.preventDefault()
                 id = $(this).attr('id').substring(12)
                 $('#editMngrs'+id).show();
                 $('#viewMngrs'+id).hide();
-
         $(document).on 'click', '.editMngrCancel', (event) ->
                 event.preventDefault()
                 # TODO: restore state of checkboxes
                 id = $(this).attr('id').substring(14)
                 $('#editMngrs'+id).hide();
                 $('#viewMngrs'+id).show();
-
         $(document).on 'click', '.editMngrSubmit', (event) ->
                 $(this).addClass('disabled')
                 $(this).parent().find('.spinner').show()
+
+        # new post
+        $(document).on 'click' , '.newPostBtn', (event) ->
+                event.preventDefault()
+                # get the pageId from this buttons id
+                pageId = $(this).attr('id').substring(10)
+                # set hidden input inside news partial
+                # (this is kind of messy... might be a better way)
+                $('#newsModal').find('#page_id').val(pageId)
+
+                
 
         # OB: is this still being used?
         #fields.toggle()

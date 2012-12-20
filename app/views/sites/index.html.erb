@@ -61,6 +61,13 @@
           </div>
         </div>
 
+        <div>
+          <!-- NOTE: page_id is later filled in by javascript -->
+          <%= render "posts/news_form", :post => Post.new, :page_id => -1 %>
+        </div>
+
+
+
         <% else %>
 
         <div class="noContent">

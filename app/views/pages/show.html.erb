@@ -2,8 +2,9 @@
 
 <% if @page.has_posts? && user_signed_in? %>
 	<div>
-		<a href="#myModal" role="button" class="btn" data-toggle="modal">New <%= @page.post_type.singularize %></a>
-		<%= render "posts/#{@page.post_type.downcase}_form" %>
+		<a href="#newsModal" role="button" class="btn" data-toggle="modal">New <%= @page.post_type.singularize %></a>
+		<%= render "posts/#{@page.post_type.downcase}_form", 
+                :post => Post.new, :page_id => @page.id %>
 	</div>
 <% end %>
 
