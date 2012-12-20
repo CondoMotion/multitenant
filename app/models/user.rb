@@ -23,9 +23,12 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :owned_company
 
   # default_scope { where(company_id: Company.current_id) }
+  def member?(site)
+    Membership.find_by_user_id_and_site_id(self.id, site.id).present?
+  end
 
   def site_role(site)
-  	Membership.find_by_user_id_and_site_id(self.id, site.id).role
+  	Membership.find_by_user_id_and_site_id(self.id, site.id).role if self.member?(site)
   end
 
   def manages?(site)
