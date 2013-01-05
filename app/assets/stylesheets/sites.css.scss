@@ -110,6 +110,19 @@ $invalid: #C72020;
 	    @include border-radius(5px);
         }
         .siteDash{
+            .newPostMenu{
+                .dropdown-menu{
+                    padding:5px 0px;
+                    li a{
+                        padding:3px 10px;
+			&:hover {
+                            cursor:pointer;
+                            color:white;
+                            background:#49AFCD;
+                        }
+                    }
+                }
+            }
             .assignedMngrs{
                 h5{ margin:0px 0px 5px 0px;}
                 float:right;

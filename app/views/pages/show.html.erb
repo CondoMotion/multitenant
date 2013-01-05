@@ -2,7 +2,7 @@
 
 <% if @page.has_posts? && user_signed_in? %>
   <div>
-    <%= link_to "New #{@page.post_type.singularize}", "#newsModal", role: 'button', class: 'btn', data: {toggle: 'modal'} %>
+    <%= link_to "New #{@page.post_type.singularize}", "##{@page.post_type.singularize}Modal", role: 'button', class: 'btn', data: {toggle: 'modal'} %>
     <%= render "posts/#{@page.post_type.downcase}_form", :post => Post.new, :page_id => @page.id %>
   </div>
 <% end %>

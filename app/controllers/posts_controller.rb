@@ -14,7 +14,8 @@ class PostsController < ApplicationController
 	  if @post.save
 	  	PostMailer.new_post(@post, @post.attachment.url.nil? ? "" : @post.attachment.url).deliver
 	    flash[:notice] = 'Post was successfully created.'
-	    redirect_to( page_url(@post.page, subdomain: @site.subdomain) )
+	    #redirect_to( page_url(@post.page, subdomain: @site.subdomain) )
+            redirect_to(:back)
 	  else
 	    flash[:error] = 'Post could not be created.'
 	    render template: "pages/show"
