@@ -1,0 +1,6 @@
+<ul class="site_menu">
+  <% current_site.pages.each do |page| %>
+    <li <%= "class=active" if page == @page %>><%= link_to page.name, page %></li>
+  <% end %>
+  <!-- <li><%= link_to "+", edit_site_path %></li> -->
+</ul>

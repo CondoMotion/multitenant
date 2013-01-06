@@ -5,6 +5,15 @@
     <%= stylesheet_link_tag    "application", media: "all" %>
     <style type="text/css">
       html, body { background: #CCC; }
+      #user_nav {
+        position: absolute;
+        bottom: 25px;
+        right: 25px;
+        background: #333;
+        color: #fff;
+        padding: 15px 30px;
+        border-radius: 35px;
+      }
     </style>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
@@ -19,15 +28,6 @@
     <% end %>  
 
     <div class="container" style="padding: 20px; background: #fff; margin-top: 20px;">
-      
-      <%= render 'layouts/user_nav' %>
-
-      <ul class="site_menu">
-        <% current_site.pages.each do |page| %>
-          <li <%= "class=active" if page == @page %>><%= link_to page.name, page %></li>
-        <% end %>
-        <!-- <li><%= link_to "+", edit_site_path %></li> -->
-      </ul>
 
       <%= yield %>
       
