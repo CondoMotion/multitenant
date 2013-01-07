@@ -69,6 +69,7 @@ $ ->
                 $(this).addClass('disabled')
                 $(this).parent().find('.spinner').show()
 
+        # new posts
         $(document).on 'click', '.newPostBtn', (event) ->
                 event.preventDefault()
                 pageId = $(this).attr('id').substring(10)
@@ -76,37 +77,5 @@ $ ->
                 $('#newsModal, #documentModal, #photoModal').find('#page_id').val(pageId)
 
 
-        # select post type
-        $(document).on 'change', '.postSelect', (event) ->
-                # change the href of the button so the right modal is shown
-                modalRef  = '#' + $(this).val() + 'Modal'
-                $(this).parent().find('.newPostBtn').attr('href', modalRef)
 
-        # new post
-#        $(document).on 'click' , '.newPostBtn', (event) ->
-#                event.preventDefault()
-#                # get the pageId from this buttons id
-#                pageId = $(this).attr('id').substring(10)
-#                # set hidden input inside partialss
-#                # (this is kind of messy... might be a better way)
-#                $('#newsModal').find('#page_id').val(pageId)
-#                $('#documentModal').find('#page_id').val(pageId)
-#                $('#photoModal').find('#page_id').val(pageId)
-
-                
-
-        # OB: is this still being used?
-        #fields.toggle()
-        #        $("#site_layout").change ->
-        #        fields.toggle()
-
-        #$("#site_name").keyup ->
-        #        $('.site_name').text($(this).val())
-
-
-        #fields = toggle: ->
-        #  if $("#site_layout").val() is "custom"
-        #    $("#custom_layout_fields").show()
-        #  else
-        #    $("#custom_layout_fields").hide()
         
