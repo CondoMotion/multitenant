@@ -9,7 +9,31 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
   </head>
-  <body>
+
+  <body class="<%= controller.controller_name %>">
+
+    <div class="row mainHeader">
+      <div class="title">
+        <%= current_site.name %>
+      </div>
+
+      <ul class="site_menu">
+        <% current_site.pages.each do |page| %>
+          <li <%= "class=active" if page == @page %>><%= link_to page.name, page %></li>
+        <% end %>
+        <!-- <li><%= link_to "+", edit_site_path %></li> -->
+      </ul>
+
+
+      <div class="accountInfo">
+        <%= render 'layouts/user_nav' %>
+        <%= render 'home/nav' unless user_signed_in? %>
+      </div>
+      <div class="clearfix"></div>
+      </div>
+    </div> <!-- end row mainHeader-->
+
+
 
     <% if flash[:notice] %>
       <p class="flash alert alert-success"><%= flash[:notice] %></p>
@@ -20,17 +44,10 @@
 
     <div class="container" style="padding: 20px; background: #fff; margin-top: 20px;">
       
-      <%= render 'layouts/user_nav' %>
 
-      <ul class="site_menu">
-        <% current_site.pages.each do |page| %>
-          <li <%= "class=active" if page == @page %>><%= link_to page.name, page %></li>
-        <% end %>
-        <!-- <li><%= link_to "+", edit_site_path %></li> -->
-      </ul>
 
       <%= yield %>
-      
+
     </div>
   </body>
 </html>

@@ -25,3 +25,6 @@
     float:right;
     text-align:right;
 }
+.accountInfo .username{
+        font-weight:bold;
+}

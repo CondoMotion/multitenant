@@ -1,6 +1,6 @@
 <div id="user_nav">
 	<% if current_user %>
-        Logged in as <strong><%= current_user.email %></strong><br/>
+        <span class="username"><%= current_user.email %></span><br/>
 	  <!--<%= link_to "Dashboard", sites_url(subdomain: "www") %> |-->
 	  <% if current_site %>
 	  	<%= link_to "Edit Site", edit_site_path() %> |
