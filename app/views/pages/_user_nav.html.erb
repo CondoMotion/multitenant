@@ -1,0 +1,16 @@
+<div id="user_nav">
+	<% if current_user %>
+        Logged in as <strong><%= current_user.email %></strong><br/>
+	  <!--<%= link_to "Dashboard", sites_url(subdomain: "www") %> |-->
+	  <% if current_site %>
+	  	<%= link_to "Edit Site", edit_site_path() %> |
+	  <% end %>
+	  <%= link_to "Settings", edit_user_registration_path %> |
+	  <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+	<% else %>
+		<% unless on_site? %> 
+	  	<%= link_to "Sign Up", new_user_registration_path %> or
+	  <% end %>
+	  <%= link_to "Log In", new_user_session_path %>
+	<% end %>
+</div>
