@@ -1,6 +1,5 @@
 class SitesController < ApplicationController 
   before_filter :authenticate_user!, except: :show 
-  layout "dashboard", only: [:index, :edit]
 
 
   def add_residents

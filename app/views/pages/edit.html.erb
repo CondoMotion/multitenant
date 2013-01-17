@@ -1,16 +1,5 @@
-<div class="row-fluid">
-  <div class="span2" style="background: #f1f1f1;">
-    <ul>
-      <% current_site.pages.each do |page| %>
-        <li><%= link_to page.name, edit_page_url(page, subdomain: current_site.subdomain) %></li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="span10">
-  	<h1>Editing page</h1>
+<h1>Editing page</h1>
 
-		<%= render 'form' %>
+<%= render 'form' %>
 
-		<%= link_to 'Show', @page %>
-  </div>
-</div>
+<%= link_to 'Show', @page %>

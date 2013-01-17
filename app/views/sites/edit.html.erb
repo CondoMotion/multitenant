@@ -1,35 +1,29 @@
-<div class="row-fluid">
-  <div class="span2" style="background: #f1f1f1;">
-    <ul>
-      <% current_site.pages.each do |page| %>
-        <li><%= link_to page.name, edit_page_url(page, subdomain: current_site.subdomain) %></li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="span10">
-    <h1>Editing <%= link_to @site.name, root_path, class: "site_name" %></h1>
+<div class="container">
+  <h1>Editing <%= link_to @site.name, root_path, class: "site_name" %></h1>
 
-    <h3>Settings</h3>
+  <h3>Settings</h3>
 
-    <%= render 'form' %>
+  <%= render 'form' %>
 
-    <hr>
+  <hr>
 
-    <h3>Pages</h3>
+  <h3>Pages</h3>
 
-    <ul id="pages" data-update-url="<%= sort_pages_url %>">
-    <% @site.pages.each do |page| %>
-      <%= content_tag_for :li, page do %>
-        <span class="handle">[drag]</span>
-        <%= link_to page.name, page %> | <%= link_to 'Edit', edit_page_path(page) %> | <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
+  <ul id="pages" data-update-url="<%= sort_pages_url %>">
+  <% @site.pages.each do |page| %>
+    <%= content_tag_for :li, page do %>
+      <span class="handle">[drag]</span>
+      <%= link_to page.name, page %> | <%= link_to 'Edit', edit_page_path(page) %> | <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-    </ul>
+  <% end %>
+  </ul>
 
-    <!-- <h4>New Page</h4>
-    <%= render 'pages/form' %> -->
+  <!-- <h4>New Page</h4>
+  <%= render 'pages/form' %> -->
 
-    <div class="row-fluid">
+  <hr>
+
+  <div class="row">
     <div class="span6">
       <h3>Managers</h3>
       <%= form_for @site do |f| %>
@@ -61,8 +55,5 @@
         </div>
       <% end %>
     </div>
-
-    <hr>
   </div>
 </div>
-
