@@ -1,18 +1,23 @@
-<%= raw best_in_place_if user_signed_in?, @page, :content, type: :textarea, sanitize: false %>
+<div class="container pageContent">
+  <%= raw best_in_place_if user_signed_in?, @page, :content, type: :textarea, sanitize: false %>
 
-<% if @page.has_posts? && user_signed_in? %>
-  <div>
-    <%= link_to "New #{@page.post_type.singularize}", "##{@page.post_type.singularize}Modal", role: 'button', class: 'btn', data: {toggle: 'modal'} %>
-    <%= render "posts/#{@page.post_type.downcase}_form", :post => Post.new, :page_id => @page.id %>
+  <% if @page.has_posts? && user_signed_in? %>
+    <div class="newPostArea">
+      <%= link_to "Add #{@page.post_type.singularize.capitalize}", 
+                  "##{@page.post_type.singularize}Modal", 
+                  role: 'button', class: 'btn btn-info', data: {toggle: 'modal'} %>
+      <%= render "posts/#{@page.post_type.downcase}_form", 
+                 :post => Post.new, :page_id => @page.id %>
+    </div>
+  <% end %>
+
+  <% @page.posts.each do |post| %>
+    <div class="post">
+      <%= render "posts/#{@page.post_type.downcase}", :post => post %>
+    </div>
+  <% end %>
+
+  <div class="editLink">
+    <%= link_to 'Edit Page', edit_page_path(@page) %>
   </div>
-<% end %>
-
-<% @page.posts.each do |post| %>
-  <div class="post">
-    <%= link_to post.title, post %> <%= link_to raw("&times;"), post, method: :delete, confirm: "Are you sure?" %>
-  </div>
-<% end %>
-
-<div style="margin-top: 18px;">
-  <%= link_to 'Edit Page', edit_page_path(@page) %>
 </div>

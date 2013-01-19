@@ -1,5 +1,21 @@
-<div class="news">
-	<p>Posted by <%= @post.user.email %> <%= time_ago_in_words(@post.created_at) %> ago</p>
-  <h4><%= @post.title %></h4>
-  <p><%= @post.content %></p>
+<div class="newsPost">
+  <h4><%= post.title %></h4>
+  <div class="postInfo">
+    Posted <%= time_ago_in_words(post.created_at) %> ago
+    by <%= post.user.email %> 
+  </div>
+
+  <div class="controls">
+      <%= link_to raw("<i class='icon-edit'></i>"), 
+      "##{post.post_type.singularize}Modal", role: 'button', 
+      data: {toggle: 'modal'} %>
+
+      <%= link_to raw("<i class='icon-trash'></i>"), 
+      post, method: :delete, confirm: "Are you sure?" %>
+
+  </div>
+  <div class="postContent"><%= post.content %></i></div>
+
+
+
 </div>

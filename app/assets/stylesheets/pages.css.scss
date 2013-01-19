@@ -23,8 +23,9 @@
 // and instead of using site as the dashboard, create a
 // new view and use that as the dashboard
 .pages{
+    background:white;
     .mainHeader{
-        border-bottom:1px solid #ccc;
+        border-bottom:0px;
         background:black;
         color:#eee;
         .title{
@@ -70,6 +71,33 @@
                 font-size:12px;
                 color:#bbb;
             }
+        }
+    }
+    .mainImage{
+        height:142px;
+        background: url('city_sm.jpg');
+        border-top: 1px solid #aaa;
+    }
+ 
+    .pageContent{
+        position:relative;
+        padding:60px;
+        h1{
+            font-size:38px;
+            margin-bottom:30px;
+            padding-bottom:10px;
+            border-bottom:1px solid #ccc;
+        }
+        .editLink{
+            margin-top:40px;
+        }
+        p{
+            font-size:16px;
+        }
+        .newPostArea{
+            position:absolute;
+            top:75px;
+            right:60px;
         }
     }
 }

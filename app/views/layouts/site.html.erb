@@ -3,9 +3,6 @@
   <head>
     <title><%= current_site.name %></title>
     <%= stylesheet_link_tag    "application", media: "all" %>
-    <style type="text/css">
-      html, body { background: #CCC; }
-    </style>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
   </head>
@@ -24,16 +21,20 @@
         <!-- <li><%= link_to "+", edit_site_path %></li> -->
       </ul>
 
-
       <div class="accountInfo">
-        <%= render 'layouts/user_nav' %>
-        <%= render 'home/nav' unless user_signed_in? %>
+        <% if user_signed_in? %>
+           <%= render 'layouts/user_nav' %>
+        <% else %>
+        <%= link_to "Sign In", new_user_session_path %> &nbsp 
+        <%= link_to "Sign Up", new_user_registration_path %>
+        <% end %>
       </div>
       <div class="clearfix"></div>
       </div>
     </div> <!-- end row mainHeader-->
 
-
+    <div class="row mainImage">
+    </div>
 
     <% if flash[:notice] %>
       <p class="flash alert alert-success"><%= flash[:notice] %></p>
@@ -42,12 +43,7 @@
       <p class="flash alert alert-error"><%= flash[:error] %></p>
     <% end %>  
 
-    <div class="container" style="padding: 20px; background: #fff; margin-top: 20px;">
-      
+    <%= yield %>
 
-
-      <%= yield %>
-
-    </div>
   </body>
 </html>

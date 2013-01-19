@@ -37,10 +37,12 @@ private
 	end
 
 	def create_default_pages
-		@page = self.pages.create(name: "Home", content: "<p>Welcome to our community!</p>", has_posts: false)
-		@page = self.pages.create(name: "News", content: "", has_posts: true, post_type: "news")
-		@page = self.pages.create(name: "Documents", content: "", has_posts: true, post_type: "documents")
-		@page = self.pages.create(name: "Photos", content: "", has_posts: true, post_type: "photos")	
+		@page = self.pages.create(name: "Home", content: "<h1>Welcome to our community!</h1>"+
+                                          "<p>Use this space to add information about your property and links to relevant pages.</p>", 
+                                          has_posts: false)
+		@page = self.pages.create(name: "News", content: "<h1>Recent News</h1>", has_posts: true, post_type: "news")
+		@page = self.pages.create(name: "Documents", content: "<h1>Documents</h1>", has_posts: true, post_type: "documents")
+		@page = self.pages.create(name: "Photos", content: "<h1>Photographs</h1>", has_posts: true, post_type: "photos")	
 	end
 
 	def create_default_roles
