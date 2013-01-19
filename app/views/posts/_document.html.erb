@@ -1,8 +1,7 @@
-<div class="document">
-	DOC
-	<p>Posted by <%= @post.user.email %> <%= time_ago_in_words(@post.created_at) %> ago</p>
-  <h4><%= @post.title %></h4>
-  <% if @post.attachment.present? %>
-  	<p><%= link_to @post.attachment.file.filename, @post.attachment.url %></p>
+<div class="documentPost">
+  <p>Posted by <%= post.user.email %> <%= time_ago_in_words(post.created_at) %> ago</p>
+  <h4><%= post.title %></h4>
+  <% if post.attachment.present? %>
+  	<p><%= link_to post.attachment.file.filename, post.attachment.url %></p>
   <% end %>
 </div>

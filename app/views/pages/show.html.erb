@@ -13,7 +13,7 @@
 
   <% @page.posts.each do |post| %>
     <div class="post">
-      <%= render "posts/#{@page.post_type.downcase}", :post => post %>
+      <%= render "posts/#{@page.post_type.singularize.downcase}", :post => post %>
     </div>
   <% end %>
 
