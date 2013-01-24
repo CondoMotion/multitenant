@@ -74,7 +74,7 @@ $ ->
                 event.preventDefault()
                 pageId = $(this).attr('id').substring(10)
                 # set hidden input inside of form partials
-                $('#newsModal, #documentModal, #photoModal').find('#page_id').val(pageId)
+                $('#newsModal, #documentsModal, #photosModal').find('#page_id').val(pageId)
 
 
 

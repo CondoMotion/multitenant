@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= current_site.name %></title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tag %>
+  </head>
+
+  <body class="pageLayout <%= controller.controller_name %>">
+
+    <div class="row mainHeader">
+
+      <div class="title">
+        <%= current_site.name %>
+      </div>
+
+      <ul class="site_menu">
+        <% current_site.pages.each do |page| %>
+          <li <%= "class=active" if page == @page %>><%= link_to page.name, page %></li>
+        <% end %>
+        <!-- <li><%= link_to "+", edit_site_path %></li> -->
+      </ul>
+
+      <div class="accountInfo">
+        <% if user_signed_in? %>
+           <%= render 'layouts/user_nav' %>
+        <% else %>
+        <%= link_to "Sign In", new_user_session_path %> &nbsp 
+        <%= link_to "Sign Up", new_user_registration_path %>
+        <% end %>
+      </div>
+      <div class="clearfix"></div>
+      </div>
+    </div> <!-- end row mainHeader-->
+
+    <div class="row mainImage">
+    </div>
+
+    <% if flash[:notice] %>
+      <p class="flash alert alert-success"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="flash alert alert-error"><%= flash[:error] %></p>
+    <% end %>  
+
+    <%= yield %>
+
+  </body>
+</html>

@@ -1,0 +1,174 @@
+// Style of show/edit pages
+.posts{
+    background:#777;
+    .editBox{
+        position:relative;
+        width:560px;
+        padding-top:20px;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:40px;
+        border:1px solid #ccc;
+        background:white;
+        h2{
+            padding:0px 30px;
+        }
+        .cancelBtn{
+            position:absolute;
+            bottom:15px;
+            right:155px;
+        }
+    }
+}
+
+// Style for showing news posts in a list
+.newsPost{
+    position:relative;
+    margin-top:30px;
+    h4{
+        margin-bottom:5px;
+    }
+    .postInfo{
+        font-size:12px;
+        color:#888;
+    }
+    .postContent{
+        font-size:16px;
+        padding:15px 0px 25px 0px;
+        margin-bottom:20px;
+        border-bottom: 1px solid #ddd;
+    }
+    .controls{
+        position:absolute;
+        top:0px;
+        right:20px;
+        a{
+            text-decoration:none;
+            color:#999;
+            &:hover{
+                color:#444;
+            }
+        }
+    }
+    // icons are rendering funny without this
+    i{
+        background:white;
+    }
+}
+
+// Style for document posts
+.docPost{
+    padding:10px 10px 5px 10px;
+    border-bottom:1px solid #eee;
+    .docIcon{
+        float:left;
+        width:20px;
+        font-size:18px;
+        a{color:#888;}
+    }
+    .docTitle{
+        font-size:14px;
+        font-weight:bold;
+        float:left;
+        width:700px;
+        line-height:16px;
+    }
+    .docInfo{
+        float:left;
+        width:150px;
+        line-height:16px;
+        color:#777;
+    }
+    .docControls{
+        float:left;
+        width:50px;
+        a{color:#888;}
+    }
+    // icons are rendering funny without this
+    i{
+        background:white;
+    }
+}
+// hover class for document, setting this via JS because of issue with icons
+// needing the background changed when hovering
+.docPostHover{
+    background:#FFFFbb;
+    cursor:pointer;
+    .docTitle{
+        text-decoration:underline;
+    }
+    .docIcon a{
+        color:#444;
+    }
+}
+
+// Style for photos
+.photoPost{
+    padding:10px;
+    float:left;
+    text-align:center;
+    position:relative;
+    img{
+        border:5px solid #eee;
+        width:280px;
+    }
+    .photoTitle{
+        font-weight:bold;
+        text-align:center;
+    }
+    .photoInfo{
+        font-size:12px;
+        color:#888;
+    }
+    .photoControls{
+        position:absolute;
+        right:20px;
+        bottom:20px;
+        i{
+            background:white;
+        }
+        a{
+            color:#aaa;
+            &:hover{
+                color:#444
+            }
+        }
+    }
+}
+
+// Style for creating / editing news posts
+.newsForm, .documentsForm, .photosForm{
+    .inputArea{
+        padding:30px 30px 0px 30px;
+        border-bottom:1px solid #ddd;
+        input{
+            width:480px;
+            font-size:16px;
+            margin-bottom:10px;
+            padding:10px 5px;
+        }
+        textArea{
+            width:480px;
+            height:160px;
+        }
+        
+    }
+    .submitArea{
+        background:#f2f2f2;
+        border-top:1px solid white;
+        padding:15px 35px;
+        text-align:right;
+    }
+    // overwrite this style
+    form{
+        margin-bottom:0px;
+    }
+}
+
+#newsModal, #documentsModal, #photosModal{
+    .cancelBtn{
+        position:absolute;
+        bottom:15px;
+        right:155px;
+    }
+}

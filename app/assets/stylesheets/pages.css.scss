@@ -18,11 +18,7 @@
   &:first-letter { text-transform: uppercase; }
 }
 
-
-// TODO: this should probably live in sites.css.scss,
-// and instead of using site as the dashboard, create a
-// new view and use that as the dashboard
-.pages{
+.pageLayout{
     background:white;
     .mainHeader{
         border-bottom:0px;

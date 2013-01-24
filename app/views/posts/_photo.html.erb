@@ -1,5 +1,13 @@
 <div class="photoPost">
-  <p>Posted by <%= post.user.email %> <%= time_ago_in_words(post.created_at) %> ago</p>
-  <%= post.title %><br>
   <%= image_tag post.attachment.url %>
+  <div class="photoTitle"><%= post.title %></div>
+  <div class="photoInfo">
+    Uploaded <%= time_ago_in_words(post.created_at) %> ago</p>
+  </div>
+  <div class="photoControls">
+      <%= link_to raw("<i class='icon-edit'></i>"), edit_post_path(post) %>
+      <%= link_to raw("<i class='icon-trash'></i>"), post, method: :delete,
+      confirm: "Are you sure you want to delete this document?" %>
+  </div>
+
 </div>

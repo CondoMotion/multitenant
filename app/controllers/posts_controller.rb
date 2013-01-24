@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-	before_filter :authenticate_user!
+  layout "page"
+  before_filter :authenticate_user!
 
   def show
     @post = current_site.posts.find(params[:id])
@@ -30,10 +31,11 @@ class PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    
+    @page = @post.page
+
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to @page, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

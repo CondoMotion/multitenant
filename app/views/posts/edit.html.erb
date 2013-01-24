@@ -1,5 +1,9 @@
-<h1>Editing Post</h1>
+  <div class="editBox">
+    <h2>Edit <%= @post.post_type.capitalize.singularize %></h2>
+    <%= render "#{@post.post_type.downcase}_form", 
+        :post => @post, :page_id => @page.id %>
 
-<%= render "#{@post.post_type.downcase}_form" %>
+    <%= link_to 'Cancel', page_path(@page), role: "button", class: "btn cancelBtn" %>
 
-<p><%= link_to "Back", @post %></p>
+  </div>
+

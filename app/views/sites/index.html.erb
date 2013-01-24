@@ -63,9 +63,9 @@
 
         <!-- modal for posts -->
         <!-- NOTE: page_id is later filled in by javascript -->
-        <%= render "posts/news_form", :post => Post.new, :page_id => -1 %>
-        <%= render "posts/documents_form", :post => Post.new, :page_id => -1 %>
-        <%= render "posts/photos_form", :post => Post.new, :page_id => -1 %>
+        <%= render "posts/news_modal",      :post => Post.new, :page_id => -1 %>
+        <%= render "posts/documents_modal", :post => Post.new, :page_id => -1 %>
+        <%= render "posts/photos_modal",    :post => Post.new, :page_id => -1 %>
 
         
         <% else %> <!-- no sites exist yet -->

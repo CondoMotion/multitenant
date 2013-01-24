@@ -3,10 +3,11 @@
 
   <% if @page.has_posts? && user_signed_in? %>
     <div class="newPostArea">
+
       <%= link_to "Add #{@page.post_type.singularize.capitalize}", 
-                  "##{@page.post_type.singularize}Modal", 
+                  "##{@page.post_type}Modal", 
                   role: 'button', class: 'btn btn-info', data: {toggle: 'modal'} %>
-      <%= render "posts/#{@page.post_type.downcase}_form", 
+      <%= render "posts/#{@page.post_type.downcase}_modal", 
                  :post => Post.new, :page_id => @page.id %>
     </div>
   <% end %>
@@ -16,6 +17,7 @@
       <%= render "posts/#{@page.post_type.singularize.downcase}", :post => post %>
     </div>
   <% end %>
+  <div class="clearfix"></div>
 
   <div class="editLink">
     <%= link_to 'Edit Page', edit_page_path(@page) %>

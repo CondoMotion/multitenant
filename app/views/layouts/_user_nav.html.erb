@@ -1,7 +1,7 @@
 <div id="user_nav">
 	<% if current_user %>
         <span class="username"><%= current_user.email %></span><br/>
-	  <!--<%= link_to "Dashboard", sites_url(subdomain: "www") %> |-->
+          <%= link_to "Dashboard", sites_path %> | 
 	  <% if current_site %>
 	  	<%= link_to "Edit Site", edit_site_path() %> |
 	  <% end %>

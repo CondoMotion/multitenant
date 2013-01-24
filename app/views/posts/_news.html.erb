@@ -6,15 +6,13 @@
   </div>
 
   <div class="controls">
-      <%= link_to raw("<i class='icon-edit'></i>"), 
-      "##{post.post_type.singularize}Modal", role: 'button', 
-      data: {toggle: 'modal'} %>
+
+      <%= link_to raw("<i class='icon-edit'></i>"), edit_post_path(post) %>
 
       <%= link_to raw("<i class='icon-trash'></i>"), 
-      post, method: :delete, confirm: "Are you sure?" %>
+      post, method: :delete, confirm: "Are you sure you want to delete this post?" %>
 
-      <%= link_to raw("<i class='icon-pencil'></i>"), 
-      post, method: :edit %>
+
 
   </div>
   <div class="postContent"><%= post.content %></i></div>
