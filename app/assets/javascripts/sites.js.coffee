@@ -16,6 +16,20 @@ validateEmails = (input) ->
 
 # Document Ready
 $ ->
+        # Tabs: TODO: probably easier to just make separate pages for managers and sites...
+        $('#sitesLink').click ->
+                $('#sitesLink').parent().addClass('active')
+                $('#managersLink').parent().removeClass('active')
+                $('#sitesTab').show()
+                $('#managersTab').hide()
+                return false
+        $('#managersLink').click ->
+                $('#managersLink').parent().addClass('active')
+                $('#sitesLink').parent().removeClass('active')
+                $('#managersTab').show()
+                $('#sitesTab').hide()
+                return false
+                
         # add manager actions
         $('#addManagerBtn').click ->
                 $('#addManagerDialog').show()
@@ -40,17 +54,17 @@ $ ->
                         return false
 
         # site tabs
-        $('.tab-link').click ->
+        $('.siteLink').click ->
                 id = $(this).attr('id').substring(8)
-                $('.tab-link').parent().removeClass('active')
+                $('.siteLink').parent().removeClass('active')
                 $(this).parent().addClass('active')
-                $('.tab-pane').hide().removeClass('active')
-                $('#tab-pane'+id).show().addClass('active')
-                false
+                $('.sitePanel').hide().removeClass('active')
+                $('#sitePanel'+id).show().addClass('active')
+                return false
         # initially, just show the first tab
-        $('.tab-pane').hide();
-        $('.siteTabs').find('li').first().addClass('active');
-        $('.siteTabs').find('.tab-pane').first().show().addClass('active');
+        $('.sitePanel').hide();
+        $('.siteList').find('li').first().addClass('active');
+        $('.sitePanel').first().show();
 
         
         # editing managers

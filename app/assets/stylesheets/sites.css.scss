@@ -4,11 +4,62 @@
 @import "bootstrap";
 $invalid: #C72020;
 .sites{
-    .mainContainer{
-        padding:30px;
+    .mainHeader{
+        /* TODO: combine style that is in here and in application layout into a new layout for dashboard */
+        background:#333;
+        padding:10px 40px;
+        border-bottom:1px solid #ddd;
+        color:#ddd;
+        border-bottom:1px solid black;
+        .companyName{
+            font-size:20px;
+            margin-top:10px;
+            margin-left:20px;
+            float:left;
+        }
+        .navLinks{
+            margin-left:60px;
+            margin-top:6px;
+            margin-bottom:0px;
+            float:left;
+            // override some bootstrap defaults
+            ul{
+                margin:0px;
+                li{
+                    margin-right:10px;
+                }
+            }
+            a{
+                color:#ccc;
+                padding:6px 12px;
+		&:hover {
+                    color:white;
+                    background:none;
+                }
+            }
+            .active{
+                a {
+                    color:white;
+                    background:none;
+                }
+            }
+        }
+        .accountInfo{
+            color:#ccc;
+            .username{
+                font-weight:normal;
+                color:#eee;
+            }
+            a{
+                font-size:12px;
+                color:#bbb;
+            }
+        }
     }
 
-    .managers{
+
+    #managersTab{
+        display:none;
         padding:10px 20px;
         background:#f4f4f4;
         margin-top:20px;
@@ -53,13 +104,239 @@ $invalid: #C72020;
         }
     }
 
-    .sites{
-        margin-top:20px;
-        background: #f4f4f4;
-        padding: 10px 30px 30px 30px;
-        min-height:450px;
-        border:1px solid #eee;
-	@include border-radius(5px);
+    #sitesTab{
+        position:absolute;
+        top:60px;
+        bottom:0px;
+        left:0px;
+        right:0px;
+        background: #444;
+        .sideBar{
+            position:absolute;
+            top:0px;
+            bottom:40px;
+            left:0px;
+            width:200px;
+            background:#444;
+            h3{
+                margin:20px 20px 0px 20px;
+                padding:0px;
+                font-weight:normal;
+                font-style:italic;
+                color:#999;
+                font-size:18px;
+                line-height:24px;
+                border-bottom:1px solid #666;
+            }
+            a{
+                i{
+                    // icons are rendering incorrectly without this
+                    background:none;
+                    margin-top:2px;
+                }
+            }
+            .siteList{
+                // override some bootstrap style
+                .nav{
+                    margin:4px 0px;
+                    li{
+                        margin-left:5px;
+                        width:190px;
+                        a{
+                            @include border-radius(0px);
+                            border:none;
+                            color:#ccc;
+                            padding:7px 14px;
+			    &:hover {
+                                background:#666;
+                            }
+                        }
+                    }
+                    .active a{
+                        color:white;
+                        background:none;
+			&:hover {
+                            background:none;
+                        }
+                    }
+                }
+            }
+            .newSiteBtn{
+                margin:30px 0px 0px 20px;
+                padding-right:15px;
+            }
+
+        }
+        .mainContent{
+            position:absolute;
+            top:0px;
+            bottom:0px;
+            left:200px;
+            right:0px;
+            .sitePanel{
+                display:none;
+                position:absolute;
+                top:0px;
+                bottom:40px;
+                overflow:auto;
+                left:0px;
+                right:0px;
+                min-width:750px;
+                background:white;
+                padding:40px;
+                .newPostMenu{
+                    .dropdown-menu{
+                        padding:5px 0px;
+                        li a{
+                            padding:3px 10px;
+			    &:hover {
+                                cursor:pointer;
+                                color:white;
+                                background:#49AFCD;
+                            }
+                        }
+                    }
+                }
+
+                .recentActivity{
+                    width:450px;
+                    margin-top:40px;
+                    border-top:1px solid #ccc;
+                    h4{margin:30px 0px 20px 0px;}
+                }
+                
+                
+                .box{
+                    border:1px solid #ccc;
+	            @include border-radius(6px);
+                    .boxTitle{
+                        @include border-top-radius(6px);
+                        border-bottom:1px solid #ccc;
+                        font-size:16px;
+                        font-weight:bold;
+                        line-height:28px;
+                        padding:5px 15px;
+                        background:#eee;
+                    }
+                    .boxContent{
+                        padding:10px 15px 20px 15px;
+                    }
+                }
+
+                .assignedMngrs, .residents{
+                    ul{
+                        margin:0px;
+                        padding:0px;
+                        li{
+                            margin:0px;
+                            padding:2px 0px;
+                            list-style:none;
+                            i{
+                                // FIX THIS, something with content
+                                    //content:"";
+                                    background:none;
+                                    color:#666;
+                                    padding:1px 5px 0px 0px;
+                            }
+                        }
+                    }
+                    
+                }
+
+                .assignedMngrs{
+                    width:250px;
+                    .viewMngrs{
+                        .editMngrLink{
+                            margin-left:3px;
+                            font-size:12px;
+                        }
+                    }
+                    .editMngrs{
+                        display:none;
+                        border:1px dotted #ddd;
+                        background:#f8f8f8;
+                        padding:10px;
+                        .actions{
+                            margin-top:5px;
+                            border-top:1px solid #ddd;
+                            text-align:right;
+                            padding:10px 5px 0px 0px;
+                            .editMngrCancel{
+                                margin-right:10px;
+                            }
+                            .spinner{
+                                display:none;
+                                margin-right:30px;
+                                background:pink;
+                            }
+                        }
+                    }
+                }
+                
+                .residents{
+                    width:250px;
+                    margin-top:40px;
+                }
+
+            }
+        }
+        .noSitesYet{
+            margin:100px auto 0px auto;
+            width:500px;
+            color:#ccc;
+            h1{ 
+                margin-bottom:20px;
+            }
+        }
+
+    }
+
+    .newSite {
+        position:absolute;
+        top:60px; bottom:0px; left:0px; right:0px;
+        background: #4B7399;
+        padding:60px;
+        .formBox{
+            margin:0px auto 0px auto;
+            width:264px;
+            background:#f4f4f4;
+            border:1px solid #ddd;
+            padding:10px 40px;
+	    @include border-radius(5px);
+            .actions{
+                margin-top:5px;
+                float:right;
+            }
+            input[type="text"]{
+                width:250px;
+            }
+            select{
+                width:265px;
+            }
+            textArea{
+                width:250px;
+            }
+        }
+        .backLink{
+            width:300px;
+            margin: 10px auto 0px auto;
+            a{color:white;}
+        }
+    }
+    .footer{
+        position:absolute;
+        bottom:0px;
+        height:30px;
+        left:0px;
+        right:0px;
+        text-align:center;
+        background:#444;
+        font-size:12px;
+        padding-top:10px;
+        color:#999;
+    }
+}
+        /*
         .noContent {
             margin:20px auto 0px auto;
             padding:20px 25px 0px 25px;
@@ -81,10 +358,6 @@ $invalid: #C72020;
                 text-align:right;
                 height:10px;
             }
-        }
-        .newSiteBtn{
-            float:right;
-            margin-top:-50px;
         }
         .siteList{
             float:left;

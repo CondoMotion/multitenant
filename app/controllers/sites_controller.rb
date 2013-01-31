@@ -1,7 +1,6 @@
 class SitesController < ApplicationController 
   before_filter :authenticate_user!, except: :show 
 
-
   def add_residents
 
   end
@@ -40,6 +39,7 @@ class SitesController < ApplicationController
 
   # POST /sites
   # POST /sites.json
+  # TODO: maybe creating a new site should redirect back to dashboard instead?
   def create
     @site = current_user.sites.build(params[:site])
 

@@ -9,9 +9,7 @@
     
     <!-- Le styles -->
     <%= stylesheet_link_tag    "application", :media => "all" %>
-<!--
     <link href='http://fonts.googleapis.com/css?family=Raleway:100|Varela' rel='stylesheet' type='text/css'>
--->
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
 
@@ -29,6 +27,7 @@
   </head>
 
   <body class="<%= controller.controller_name %>">
+
     <% if flash[:notice] %>
       <p class="flash alert alert-success"><%= flash[:notice] %></p>
     <% end %>
@@ -37,19 +36,29 @@
     <% end %>  	
 
     <div class="row mainHeader">
-      <div class="container">
-      <div id="logo">
-        <%= link_to image_tag('logo.png', :style => "opacity: 0.8;"), user_signed_in? ? sites_url(subdomain: "www") : root_url %>
+      <div class="companyName"><%= current_company.name if current_company %></div>
+      
+      <div class="navLinks">
+        <ul class="nav nav-pills">
+          <li class="active"><a href="#" id="sitesLink">Sites</a> </li>
+          <li><a href="#" id="managersLink">Managers</a></li>
+        </ul>
       </div>
+      
       <div class="accountInfo">
         <%= render 'layouts/user_nav' %>
         <%= render 'home/nav' unless user_signed_in? %>
       </div>
       <div class="clearfix"></div>
-      </div>
+      
     </div> <!-- end row mainHeader-->
     
+
     <%= yield %>
+
+<div class="footer">
+  Condo Motion | Copyright 2013
+</div>
 
   </body>
 </html>

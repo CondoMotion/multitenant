@@ -1,0 +1,53 @@
+<% if @sites.length > 0 %>
+  <div class="sideBar">
+    <h3>Sites</h3>
+    <div class="siteList">
+      <ul class="nav nav-tabs nav-stacked">
+      <% @sites.each do |site| %>
+        <li>
+          <a class="siteLink" id="siteLink<%=site.id %>" href="#"><%= site.name %></a>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  
+    <%= link_to raw("<i class='icon-plus-sign icon-white'></i> New Site"), 
+        new_site_path, class: "btn btn-info newSiteBtn" %>
+  
+  </div>
+  
+  <div class="mainContent">
+
+    <% @sites.each do |site| %>
+      <div class="sitePanel" id="sitePanel<%= site.id %>">
+        <%= render "site_panel", :site => site %>
+      </div>
+    <% end %>
+
+    <!-- modal for posts -->
+    <!-- NOTE: page_id is later filled in by javascript -->
+    <%= render "posts/news_modal",      :post => Post.new, :page_id => -1 %>
+    <%= render "posts/documents_modal", :post => Post.new, :page_id => -1 %>
+    <%= render "posts/photos_modal",    :post => Post.new, :page_id => -1 %>
+
+  </div> <!-- end mainContent -->
+
+<% else %> <!-- no sites exist yet -->
+
+    <div class="noSitesYet">
+      <h1>Create your first site.</h1>
+      <%= link_to raw("<i class='icon-plus-sign icon-white'></i> New Site"), 
+      new_site_path, class: "btn btn-info newSiteBtn" %>
+
+    </div>
+
+<% end %>
+
+
+
+
+   
+
+
+
+
