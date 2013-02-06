@@ -223,7 +223,9 @@ $invalid: #C72020;
                     }
                 }
 
+
                 .assignedMngrs, .residents{
+                    width:250px;
                     ul{
                         margin:0px;
                         padding:0px;
@@ -232,7 +234,8 @@ $invalid: #C72020;
                             padding:2px 0px;
                             list-style:none;
                             i{
-                                // FIX THIS, something with content
+                                // FIX THIS, icons not displaying properly,
+                                // something with content
                                     //content:"";
                                     background:none;
                                     color:#666;
@@ -240,13 +243,8 @@ $invalid: #C72020;
                             }
                         }
                     }
-                    
-                }
-
-                .assignedMngrs{
-                    width:250px;
-                    .viewMngrs{
-                        .editMngrLink{
+                    .viewMngrs, .viewRes{
+                        .editMngrLink, .editResLink{
                             margin-left:3px;
                             font-size:12px;
                         }
@@ -274,7 +272,6 @@ $invalid: #C72020;
                 }
                 
                 .residents{
-                    width:250px;
                     margin-top:40px;
                 }
 
@@ -323,6 +320,63 @@ $invalid: #C72020;
             a{color:white;}
         }
     }
+    .editSite{
+        position:absolute;
+        top:50px; bottom:0px; left:0px; right:0px;
+        .siteName{
+            margin:90px 0px 0px 80px;
+            h1{
+                font-size:35px;
+                margin-bottom:0px;
+            }
+            h2{
+                color:#bbb;
+                font-weight:normal;
+                font-size:28px;
+                margin:0px;
+            }
+            .backLink{
+                margin-top:30px;
+            }
+        }
+        .settings{
+            margin:50px 0px 0px 50px;
+            .tab-pane{
+                padding:5px 20px;
+            }
+            #residents{
+                .emailsLabel{
+                    font-size:16px;
+                    line-height:16px;
+                    margin-bottom:10px;
+                    .muted{
+                        font-size:14px;
+                    }
+                }
+                textArea{
+                    width:270px;
+                    height:70px;
+                }
+                .roleLabel{
+                    display:inline-block;
+                    margin:15px 5px 0px 0px;
+                    font-weight:bold;
+                }
+                select{
+                    width:240px;
+                }
+                .btn{
+                    margin-top:20px;
+                }
+            }
+            #managers{
+                .btn{
+                    margin-top:20px;
+                }
+            }
+        }
+    }
+
     .footer{
         position:absolute;
         bottom:0px;

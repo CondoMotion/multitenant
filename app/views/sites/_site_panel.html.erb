@@ -43,6 +43,7 @@
 </div> <!-- end pull-left -->
 
 <div class="pull-right">
+
   <div class="assignedMngrs box">
     <div class="boxTitle">Managers Assigned</div>
     <div class="boxContent">
@@ -55,7 +56,7 @@
           </ul>
         </div>
         <a class="editMngrLink" id="editMngrLink<%= site.id %>" href="#">
-          Change Managers
+          Assign Managers
         </a>
       </div>
   
@@ -80,18 +81,27 @@
     </div>
   </div> <!-- end assignedManagers -->
   
-  
+
+
   <div class="residents box">
     <div class="boxTitle">Residents</div>
     <div class="boxContent">
-      <ul>
-        <li><i class="icon-user"></i>John Smith</li>
-        <li><i class="icon-user"></i>Nico Bobbyness</li>
-        <li><i class="icon-user"></i>Jessica Helbow</li>
-      </ul>
+      <div class="viewRes">
+        <div class="list">
+          <ul>
+            <% site.members.each do |member| %>
+              <li><i class="icon-user"></i><%= member.email %></li>
+            <% end %>
+          </ul>
+        </div>
+        <%= link_to "Edit Residents", edit_site_url(subdomain: site.subdomain)+'#residents', 
+            class: "editResLink" %>
+        </a>
+      </div>
+  
     </div>
-  </div> <!-- end box -->
-
+  </div> <!-- end Residents -->
+  
 </div> <!-- end pull right -->
 
 

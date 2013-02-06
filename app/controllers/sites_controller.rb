@@ -87,4 +87,7 @@ class SitesController < ApplicationController
     end
   end
 
+  def managers
+  end
+
 end

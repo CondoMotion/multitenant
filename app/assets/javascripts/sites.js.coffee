@@ -90,6 +90,18 @@ $ ->
                 # set hidden input inside of form partials
                 $('#newsModal, #documentsModal, #photosModal').find('#page_id').val(pageId)
 
+        #
+        # Editing site
+        #
 
+        # bootstrap tabs
+        $('#settingsTab a').click (event) ->
+                event.preventDefault()
+                $(this).tab('show');
 
-        
+        # allow linking to specific tabs
+        if location.hash != ''
+                $('a[href="'+location.hash+'"]').tab('show')
+        $('a[data-toggle="tab"]').on 'shown', (e) ->
+                location.hash = $(e.target).attr('href').substr(1)
+        # TODO: back button doesn't work with tabs, consider using history plugin.
