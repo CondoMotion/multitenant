@@ -16,7 +16,7 @@
       <li class="active">
         <a href="#general" data-toggle="tab">General</a>
       </li>
-      <li><a href="#pages" data-toggle="tab">Pages</a></li>
+      <li><a href="#pages-tab" data-toggle="tab">Pages</a></li>
       <li><a href="#managers" data-toggle="tab">Managers</a></li>
       <li><a href="#residents" data-toggle="tab">Residents</a></li>
     </ul>
@@ -26,9 +26,9 @@
         <%= render 'form' %>
       </div>
 
-      <div class="tab-pane" id="pages">
+      <div class="tab-pane" id="pages-tab">
         <ul id="pages" data-update-url="<%= sort_pages_url %>">
-        <% @site.pages.each do |page| %>
+        <% @site.pages.order(:position).each do |page| %>
           <%= content_tag_for :li, page do %>
             <span class="handle">[drag]</span>
             <%= link_to page.name, page %> | <%= link_to 'Edit', edit_page_path(page) %> | <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %>
