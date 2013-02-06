@@ -1,78 +1,86 @@
 <div class="editSite">
-
-<div class="row">
-
-  <div class="siteName span4">
-    <h1><%= @site.name %></h1>
-    <h2>Settings</h2>
-    <div class="backLink">
-      <%= link_to raw("&larr; Dashboard"), sites_url(subdomain: 'www') %>
+  <div class="row">
+    <div class="siteName span4">
+      <h1><%= @site.name %></h1>
+      <h2>Settings</h2>
+      <div class="backLink">
+        <%= link_to raw("&larr; Dashboard"), sites_url(subdomain: 'www') %>
+      </div>
+  
     </div>
-
-  </div>
-
-  <div class="settings span8">
-    <ul class="nav nav-tabs" id="settingsTab">
-      <li class="active">
-        <a href="#general" data-toggle="tab">General</a>
-      </li>
-      <li><a href="#pages-tab" data-toggle="tab">Pages</a></li>
-      <li><a href="#managers" data-toggle="tab">Managers</a></li>
-      <li><a href="#residents" data-toggle="tab">Residents</a></li>
-    </ul>
-    
-    <div id="settingsTabContent" class="tab-content">
-      <div class="tab-pane active in" id="general">
-        <%= render 'form' %>
-      </div>
-
-      <div class="tab-pane" id="pages-tab">
-        <ul id="pages" data-update-url="<%= sort_pages_url %>">
-        <% @site.pages.order(:position).each do |page| %>
-          <%= content_tag_for :li, page do %>
-            <span class="handle">[drag]</span>
-            <%= link_to page.name, page %> | <%= link_to 'Edit', edit_page_path(page) %> | <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        <% end %>
-        </ul>
-
-      </div>
-
-      <div class="tab-pane" id="managers">
-      <%= form_for @site do |f| %>
-        <%= hidden_field_tag "site[manager_ids][]", nil %>
-        <% current_company.users.where(:manager => true).each do |user| %>
-          <label class="checkbox">
-            <%= check_box_tag "site[manager_ids][]", user.id, user.manages?(@site), id: dom_id(user) %> <%= user.email %>
-          </label>
-        <% end %>
-        <%= f.submit "Save", class: "btn btn-info" %>
-      <% end %>
-      </div>
-
-      <div class="tab-pane" id="residents">
-      <ul id="members">
-      <% @site.members.each do |member| %>
-        <%= content_tag_for :li, member do %>
-          <%= member.email %> (<%= member.site_role(@site).name %>)
-        <% end %>
-      <% end %>
+  
+    <div class="settings span8">
+      <ul class="nav nav-tabs" id="settingsTab">
+        <li class="active">
+          <a href="#general" data-toggle="tab">General</a>
+        </li>
+        <li><a href="#pages-tab" data-toggle="tab">Pages</a></li>
+        <li><a href="#managers" data-toggle="tab">Managers</a></li>
+        <li><a href="#residents" data-toggle="tab">Residents</a></li>
       </ul>
+      
+      <div id="settingsTabContent" class="tab-content">
+        <div class="tab-pane active in" id="general">
+          <%= render 'form' %>
+        </div>
+  
+        <div class="tab-pane" id="pages-tab">
+          <ul id="pages" data-update-url="<%= sort_pages_url %>">
+          <% @site.pages.order(:position).each do |page| %>
+            <%= content_tag_for :li, page do %>
+              <span class="handle">[drag]</span>
+              <%= link_to page.name, page %> | <%= link_to 'Edit', edit_page_path(page) %> | <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          <% end %>
+          </ul>
+  
+        </div>
+  
+        <div class="tab-pane" id="managers">
+        <%= form_for @site do |f| %>
+          <%= hidden_field_tag "site[manager_ids][]", nil %>
+          <% current_company.users.where(:manager => true).each do |user| %>
+            <label class="checkbox">
+              <%= check_box_tag "site[manager_ids][]", user.id, user.manages?(@site), id: dom_id(user) %> <%= user.email %>
+            </label>
+          <% end %>
+          <%= f.submit "Save", class: "btn btn-info" %>
+        <% end %>
+        </div>
+  
+        <div class="tab-pane" id="residents">
+          <div class="pull-left listArea">
+            <% if @site.members.empty? %>
+              <div class="emptyMsg">You haven't invited any residents yet.</div>
+              <% else %>
+              <ul id="members">
+                <% @site.members.each do |member| %>
+                  <%= content_tag_for :li, member do %>
+                    <%= member.email %> (<%= member.site_role(@site).name %>)
+                  <% end %>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+          
+          <div class="pull-right inviteArea">
+            <%= form_tag batch_create_residents_memberships_path, :method => :post do %>
+            <div class="emailsLabel">
+              <b>Invite residents by email</b>
+              <br/><span class="muted">(emails separated by commas)</span><br/>
+            </div>
+            <%= text_area_tag :emails %><br>
+            <div class="roleLabel">Role:</div>
+            <%= select("role", "", current_site.roles.all.collect {|r| [ r.name, r.id ] }, {}, {id: "role", name: "role"}) %>
+            <div>
+              <%= submit_tag "Invite Residents!", class: "btn btn-info" %>
+            </div>
+            <% end %>
+          </div>
 
-      <%= form_tag batch_create_residents_memberships_path, :method => :post do %>
-        <div class="emailsLabel">
-          <b>Invite residents by email</b>
-          <br/><span class="muted">(emails separated by commas)</span><br/>
         </div>
-        <%= text_area_tag :emails %><br>
-        <div class="roleLabel">Role:</div>
-        <%= select("role", "", current_site.roles.all.collect {|r| [ r.name, r.id ] }, {}, {id: "role", name: "role"}) %>
-        <div>
-          <%= submit_tag "Invite Residents!", class: "btn btn-info" %>
-        </div>
-      <% end %>
       </div>
-
     </div>
-  </div>
-</div>
+
+  </div> <!-- end row -->
+</div> <!-- end editSite -->

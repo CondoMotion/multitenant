@@ -265,7 +265,6 @@ $invalid: #C72020;
                             .spinner{
                                 display:none;
                                 margin-right:30px;
-                                background:pink;
                             }
                         }
                     }
@@ -322,7 +321,8 @@ $invalid: #C72020;
     }
     .editSite{
         position:absolute;
-        top:50px; bottom:0px; left:0px; right:0px;
+        top:50px; bottom:20px; left:0px; right:0px;
+        overflow:auto;
         .siteName{
             margin:90px 0px 0px 80px;
             h1{
@@ -354,7 +354,7 @@ $invalid: #C72020;
                     }
                 }
                 textArea{
-                    width:270px;
+                    width:220px;
                     height:70px;
                 }
                 .roleLabel{
@@ -363,10 +363,26 @@ $invalid: #C72020;
                     font-weight:bold;
                 }
                 select{
-                    width:240px;
+                    width:190px;
                 }
                 .btn{
                     margin-top:20px;
+                }
+                .emptyMsg{
+                    text-align:center;
+                    font-style:italic;
+                    padding-top:40px;
+                    font-size:20px;
+                    line-height:24px;
+                    color:#aaa;
+                }
+                .listArea{
+                    padding-top:10px;
+                    width:250px;
+                }
+                .inviteArea{
+                    padding:20px 0px 0px 60px;
+                    border-left:1px solid #ddd;
                 }
             }
             #managers{
