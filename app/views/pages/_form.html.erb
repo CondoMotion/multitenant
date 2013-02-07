@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "span12" %>
   </div>
   <div class="field">
     <%= f.label :content %>
-    <%= f.text_area :content, rows: 5 %>
+    <%= f.text_area :content, rows: 5, class: "span12" %>
   </div>
 
   <div>
@@ -30,10 +30,10 @@
     <%= f.select :post_type, {"News" => "news", "Documents" => "documents", "Photos" => "photos"} %>
   </div>
 
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :parent_id %>
     <%= f.collection_select :parent_id, Page.order(:name), :id, :name, include_blank: true %>
-  </div>
+  </div> -->
   <div class="actions">
     <%= f.submit class: "btn" %>
   </div>

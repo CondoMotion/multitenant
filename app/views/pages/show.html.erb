@@ -1,5 +1,6 @@
 <div class="container pageContent">
-  <%= raw best_in_place_if user_signed_in?, @page, :content, type: :textarea, sanitize: false %>
+<!--   <%= raw best_in_place_if user_signed_in?, @page, :content, type: :textarea, sanitize: false %>
+ -->  <%= raw @page.content %>
 
   <% if @page.has_posts? && user_signed_in? %>
     <div class="newPostArea">

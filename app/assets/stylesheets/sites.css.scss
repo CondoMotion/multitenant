@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
 $invalid: #C72020;
+.navbar a.brand, .navbar .nav > li > a {
+    padding: 20px;
+}
 .sites{
     .mainHeader{
         /* TODO: combine style that is in here and in application layout into a new layout for dashboard */
