@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  layout "page"
   before_filter :authenticate_user!
 
   def show
