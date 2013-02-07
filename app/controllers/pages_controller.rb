@@ -1,6 +1,4 @@
 class PagesController < ApplicationController
-  # OB: Why doesn't this automatically use the page layout?
-  layout "page"
   before_filter :authenticate_user!, except: :show
 
   def sort
