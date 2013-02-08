@@ -8,7 +8,6 @@
         background:#f4f4f4;
         border:1px solid #444;
         @include border-radius(5px);
-        
     }
 
     .links{
@@ -65,6 +64,13 @@
                 margin-left:15px;
                 float:left;
             }
+        }
+    }
+    
+    .settingsBox{
+        width:700px;
+        h2{
+            margin:20px 0px 30px 0px;
         }
     }
 }

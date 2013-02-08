@@ -12,19 +12,8 @@
  *= require_tree .
  */
 
-.mainHeader{
-    background: #4B7399;
-    background:#f8f8f8;
-    padding:10px 40px;
-    border-bottom:1px solid #ddd;
-}
-#logo img{
-    width:220px;
-}
-.accountInfo{
-    float:right;
-    text-align:right;
-}
-.accountInfo .username{
-        font-weight:bold;
-}
+
+
+/*
+    Don't add style here, instead add it to application.css.scss
+*/
