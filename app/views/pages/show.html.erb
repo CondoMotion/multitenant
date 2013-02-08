@@ -20,7 +20,9 @@
   <% end %>
   <div class="clearfix"></div>
 
-  <div class="editLink">
-    <%= link_to 'Edit Page', edit_page_path(@page) %>
-  </div>
+  <% if user_signed_in? %>
+    <div class="editLink">
+      <%= link_to 'Edit Page', edit_page_path(@page) %>
+    </div>
+  <% end %>
 </div>

@@ -6,7 +6,6 @@ $invalid: #C72020;
 .navbar a.brand, .navbar .nav > li > a {
     padding: 20px;
 }
-.sites{
     .mainHeader{
         /* TODO: combine style that is in here and in application layout into a new layout for dashboard */
         background:#333;
@@ -62,7 +61,6 @@ $invalid: #C72020;
 
 
     #managersTab{
-        display:none;
         padding:10px 20px;
         background:#f4f4f4;
         margin-top:20px;
@@ -408,7 +406,7 @@ $invalid: #C72020;
         padding-top:10px;
         color:#999;
     }
-}
+
         /*
         .noContent {
             margin:20px auto 0px auto;

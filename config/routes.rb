@@ -8,6 +8,7 @@ Forum::Application.routes.draw do
   resources :pages do
     collection { post :sort }
   end
+  resources :managers
   devise_for :users
   resources :sites
   resources :posts
