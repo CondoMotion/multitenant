@@ -13,7 +13,7 @@
       <%= post.created_at.strftime("%d %b %Y") %>
     </div>
 
-  <div class="docControls">
+  <div class="postControls">
       <%= link_to raw("<i class='icon-edit'></i>"), edit_post_path(post) %>
       <%= link_to raw("<i class='icon-trash'></i>"), post, method: :delete,
       confirm: "Are you sure you want to delete this document?" %>

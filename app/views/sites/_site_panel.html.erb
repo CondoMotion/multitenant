@@ -1,6 +1,6 @@
 <div class="pull-left">
-  <h3><%= site.name %></h3>
-  <%= link_to "View", root_url(subdomain: site.subdomain) %>
+  <h2><%= site.name %></h2>
+  <%= link_to "View", root_url(subdomain: site.subdomain), :target=>"_blank" %>
   | <%= link_to "Edit", edit_site_url(subdomain: site.subdomain) %>
   | <%= link_to "Delete", site_path(site), method: :delete %>
   <!-- TODO: delete isn't working right due to URL issue -->
@@ -32,11 +32,21 @@
 
   <div class="recentActivity">
     <h4>Recent Activity</h4>
-    <% site.posts.each do |post| %>
-      <i>Posted <%= post.post_type.singularize %>:</i> &nbsp 
-      <%= post.title %> 
-      <br>
-      <br>
+    <% site.posts.take(10).each do |post| %>
+
+    <!-- TODO: make a helper or something for this -->    
+    <% iconClass =  post.post_type=="news"       ? "icon-bullhorn" :
+                    post.post_type=="photos"     ? "icon-picture"  : 
+                                                   "icon-picture" %>
+
+      <div class="postTitle">
+        <%= link_to raw('<i class="' + iconClass + '"></i> &nbsp' + post.title),
+            root_url(subdomain: site.subdomain)+post.post_type, :target=>"_blank" %>
+      </div>
+      <div class="postInfo">
+        <%= post.post_type.singularize.capitalize %> posted
+        <%= time_ago_in_words(post.created_at) %> ago
+      </div>
     <% end %>
   </div>
 

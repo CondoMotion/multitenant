@@ -21,6 +21,24 @@
     }
 }
 
+// shared by all posts
+.newsPost, .docPost, .photoPost {
+    .postControls{
+        a{
+            text-decoration:none;
+            color:#999;
+            &:hover{
+                color:#444;
+            }
+        }
+        // icons are rendering funny without this
+        i{
+            background:white;
+        }
+    }
+}
+
+
 // Style for showing news posts in a list
 .newsPost{
     position:relative;
@@ -37,18 +55,6 @@
         padding:15px 0px 25px 0px;
         margin-bottom:20px;
         border-bottom: 1px solid #ddd;
-    }
-    .controls{
-        position:absolute;
-        top:0px;
-        right:20px;
-        a{
-            text-decoration:none;
-            color:#999;
-            &:hover{
-                color:#444;
-            }
-        }
     }
     // icons are rendering funny without this
     i{
@@ -79,14 +85,9 @@
         line-height:16px;
         color:#777;
     }
-    .docControls{
+    .postControls{
         float:left;
         width:50px;
-        a{color:#888;}
-    }
-    // icons are rendering funny without this
-    i{
-        background:white;
     }
 }
 // hover class for document, setting this via JS because of issue with icons
@@ -120,19 +121,10 @@
         font-size:12px;
         color:#888;
     }
-    .photoControls{
+    .postControls{
         position:absolute;
         right:20px;
         bottom:20px;
-        i{
-            background:white;
-        }
-        a{
-            color:#aaa;
-            &:hover{
-                color:#444
-            }
-        }
     }
 }
 

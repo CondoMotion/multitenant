@@ -4,7 +4,7 @@
   <div class="photoInfo">
     Uploaded <%= time_ago_in_words(post.created_at) %> ago</p>
   </div>
-  <div class="photoControls">
+  <div class="postControls">
       <%= link_to raw("<i class='icon-edit'></i>"), edit_post_path(post) %>
       <%= link_to raw("<i class='icon-trash'></i>"), post, method: :delete,
       confirm: "Are you sure you want to delete this document?" %>
