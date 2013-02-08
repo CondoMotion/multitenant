@@ -2,7 +2,7 @@
   <h2><%= site.name %></h2>
   <%= link_to "View", root_url(subdomain: site.subdomain), :target=>"_blank" %>
   | <%= link_to "Edit", edit_site_url(subdomain: site.subdomain) %>
-  | <%= link_to "Delete", site_path(site), method: :delete %>
+  | <%= link_to "Delete", site_path(site), method: :delete, confirm: "Are you sure?" %>
   <!-- TODO: delete isn't working right due to URL issue -->
   <br/>
   <br/>
