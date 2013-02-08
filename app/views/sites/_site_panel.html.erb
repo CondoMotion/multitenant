@@ -1,5 +1,5 @@
 <div class="pull-left">
-  <h3><%= site.name %></h3>
+  <h2><%= site.name %></h2>
   <%= link_to "View", root_url(subdomain: site.subdomain), :target=>"_blank" %>
   | <%= link_to "Edit", edit_site_url(subdomain: site.subdomain) %>
   | <%= link_to "Delete", site_path(site), method: :delete %>
