@@ -1,7 +1,7 @@
 <div style="border: 1px solid #f1f1f1; border-radius: 5px; margin-bottom: 20px;">
   <div style="background: #f1f1f1; padding: 5px 20px;">
     <h4 class="pull-left" style="margin-top: 5px;"><%= post.title %></h4>
-    <div class="pull-right">
+    <div class="pull-right btn-group">
       <%= link_to raw("<i class='icon-edit'></i>"), edit_post_path(post), class: "btn" %>
       <%= link_to raw("<i class='icon-trash'></i>"), post, method: :delete, class: "btn", confirm: "Are you sure you want to delete this post?" %>
     </div>

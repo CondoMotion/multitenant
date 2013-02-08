@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217053623) do
+ActiveRecord::Schema.define(:version => 20130208202610) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20121217053623) do
     t.string   "last_sign_in_ip"
     t.boolean  "manager"
     t.boolean  "receive_post_mails",     :default => true
+    t.string   "name"
   end
 
   add_index "users", ["company_id"], :name => "index_users_on_company_id"

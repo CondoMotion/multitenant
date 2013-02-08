@@ -4,6 +4,13 @@
 
 		<%= render 'form' %>
 
-		<%= link_to 'Show', @page %>
 	</div>
 </div>
+
+<% if user_signed_in? %>
+  <div class="newPostArea">
+    <div class="btn-group">
+      <%= link_to 'View Page', @page, class: "btn btn-inverse" %>
+    </div>
+  </div>
+<% end %>

@@ -164,3 +164,7 @@
         right:155px;
     }
 }
+.btn [class^="icon-"], .btn [class*=" icon-"], .nav [class^="icon-"], .nav [class*=" icon-"] {
+display: inline;
+line-height: 1;
+}
