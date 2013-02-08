@@ -18,82 +18,15 @@
   &:first-letter { text-transform: uppercase; }
 }
 
-.pageLayout{
-    background:white;
-    .mainHeader{
-        border-bottom:0px;
-        background:black;
-        color:#eee;
-        .title{
-            float:left;
-            font-size:20px;
-            font-weight:bold;
-            margin-top:7px;
-        }
-        .site_menu{
-	    margin-left: 50px;
-            float:left;
-	    padding: 0px;
-	    li {
-		list-style: none;
-		display: inline-block;
-		margin-right: 5px;
-		padding: 5px;
-		a {
-		    padding: 5px 5px; 
-		    text-decoration: none;
-                    color: #bbb;
-                    &:hover{
-                        color:white;
-                    }
-		}
-                &.active{
-                    a {
-                        color:white;
-                    }
-                }
-	    }
-        }
-        // overwrites style in application.css, 
-        // TODO: probably better to create two different
-        // layout styles-sheets, one for dashboard, one for site pages
-        .accountInfo{
-            color:#ccc;
-            .username{
-                font-weight:normal;
-                color:#eee;
-            }
-            a{
-                font-size:12px;
-                color:#bbb;
-            }
-        }
-    }
-    .mainImage{
-        height:142px;
-        background: url('city_sm.jpg');
-        border-top: 1px solid #aaa;
-    }
- 
-    .pageContent{
-        position:relative;
-        padding:60px;
-        h1{
-            font-size:38px;
-            margin-bottom:30px;
-            padding-bottom:10px;
-            border-bottom:1px solid #ccc;
-        }
-        .editLink{
-            margin-top:40px;
-        }
-        p{
-            font-size:16px;
-        }
-        .newPostArea{
-            position:absolute;
-            top:75px;
-            right:60px;
-        }
-    }
+.mainImage{
+  height:142px;
+  background: url('city_sm.jpg');
+  border-top: 1px solid #aaa;
+}
+
+.newPostArea {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  text-align: right;
 }
