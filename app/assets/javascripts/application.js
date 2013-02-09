@@ -20,6 +20,12 @@
 $(function(){
 		$('.flash').delay(2000).fadeOut();
     $('.flash').click(function(){
-        $(this).fadeOut();
+    	$(this).fadeOut();
     });
+
+    if ($('body').hasClass('pageLayout'))
+    	$('.mainImage').backstretch("/assets/city_sm.jpg")
+    else
+    	$('.sessions, .registrations, .passwords').backstretch("/assets/galaxy.jpg")
+    
 });
