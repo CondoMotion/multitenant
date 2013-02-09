@@ -28,8 +28,14 @@
           <ul id="pages" data-update-url="<%= sort_pages_url %>">
           <% @site.pages.order(:position).each do |page| %>
             <%= content_tag_for :li, page do %>
-              <span class="handle">[drag]</span>
-              <%= link_to page.name, page %> | <%= link_to 'Edit', edit_page_path(page) %> | <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <span class="handle">
+                <i class="icon-sort"></i>
+              </span>
+              <%= link_to page.name, page %>
+              <div class="pull-right btn-group">
+                <%= link_to 'Edit', edit_page_path(page), class: "btn" %>
+                <%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %>
+              </div>
             <% end %>
           <% end %>
           </ul>
