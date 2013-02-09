@@ -35,11 +35,10 @@ $invalid: #C72020;
 	    @include border-radius(5px);
             //background:#FBFCE6;
             .submitArea{
-                float:right;
+                //float:right;
             }
             textarea#emails{
                 margin-top:10px;
-                width:164px;
                 height:55px;
                 font-size:13px;
             }

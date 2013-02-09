@@ -2,6 +2,24 @@
 <div class="container">
   <div id="managersTab">
     <h3>Managers</h3>
+    
+    <div id="addManagerBtn" class="btn btn-info">Add Managers</div>
+    
+    <%= form_tag batch_create_managers_memberships_path, :method => :post do %>
+    <div id="addManagerDialog">
+      <strong> Invite managers by email</strong> <span class="muted">(separated by commas)</span><br>
+      <div class="row-fluid">
+        <%= text_area_tag :emails, "", class: "span12" %>
+      </div>
+      <div class="submitArea">
+        <%= submit_tag "Invite!", class: "btn btn-info", id: "addManagerSubmit" %> 
+        <a id="addManagerCancel" href="#">cancel</a>
+      </div>
+      <div class="clearfix"></div>
+      <div id="emailError"></div>        
+    </div>
+    <% end %>
+
     <ul>
       <% current_company.users.where(:manager => true).each do |user| %>
       <li>
@@ -9,22 +27,6 @@
       </li>
       <% end %>
     </ul>
-    
-    <div id="addManagerBtn" class="btn btn-info">Add Managers</div>
-    
-    <%= form_tag batch_create_managers_memberships_path, :method => :post do %>
-    <div id="addManagerDialog">
-      <strong> Invite managers by email</strong><br/>
-      <span class="muted">(separated by commas)</span>
-      <%= text_area_tag :emails, "", class: "span12" %>
-      <div class="submitArea">
-        <a id="addManagerCancel" href="#">cancel</a> &nbsp
-        <%= submit_tag "Invite!", class: "btn btn-info", id: "addManagerSubmit" %>
-      </div>
-      <div class="clearfix"></div>
-      <div id="emailError"></div>        
-    </div>
-    <% end %>
     
   </div>  <!-- end managers -->
 </div>
