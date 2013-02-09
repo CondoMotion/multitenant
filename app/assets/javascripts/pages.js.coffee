@@ -2,10 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  $('#pages').sortable
+	$('#pages').sortable
     axis: 'y'
-    handle: '.handle'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
   $('.best_in_place').best_in_place()
+
+  $(document).tooltip selector: "[rel~=tooltip]"
