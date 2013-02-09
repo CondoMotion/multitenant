@@ -3,12 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
 $invalid: #C72020;
-.sites{
-    .navbar a.brand, .navbar .nav > li > a {
-        padding: 20px;
-    }
-
-
+.navbar a.brand, .navbar .nav > li > a {
+    padding: 20px;
+}
+.sites, .managers, .registrations{
     #managersTab{
         padding:10px 20px;
         background:#f4f4f4;
@@ -373,6 +371,8 @@ $invalid: #C72020;
 
     .footer{
         position:absolute;
+        text-align: center;
+        color: #999;
         bottom:0px;
         height:30px;
         left:0px;

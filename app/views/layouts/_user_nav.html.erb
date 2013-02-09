@@ -1,16 +1,17 @@
-<div id="user_nav">
-	<% if current_user %>
-        <span class="username"><%= current_user.email %></span><br/>
-          <%= link_to "Dashboard", sites_path %> | 
-	  <% if current_site %>
-	  	<%= link_to "Edit Site", edit_site_path() %> |
-	  <% end %>
-	  <%= link_to "Settings", edit_user_registration_path %> |
-	  <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-	<% else %>
-		<% unless on_site? %> 
-	  	<%= link_to "Sign Up", new_user_registration_path %> or
-	  <% end %>
-	  <%= link_to "Log In", new_user_session_path %>
-	<% end %>
-</div>
+<ul class="nav pull-right">
+  <% if user_signed_in? %>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name.nil? ? current_user.email : current_user.name %> <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Dashboard", sites_url(subdomain: "www") %></li>
+      <li><%= link_to "Edit Site", edit_site_path() if current_site %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Settings", edit_user_registration_url(subdomain: "www") %></li>
+      <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </li>
+  <% else %>
+    <li><%= link_to "Sign In", new_user_session_path %></li>
+    <li><%= link_to "Sign Up", new_user_registration_path %></li>
+  <% end %>
+</ul>

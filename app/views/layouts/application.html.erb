@@ -38,24 +38,19 @@
       <p class="flash alert alert-error"><%= flash[:error] %></p>
     <% end %>  	
 
-    <div class="row mainHeader">
-      <div class="companyName"><%= current_company.name if current_company %></div>
-      
-      <div class="navLinks">
-        <ul class="nav nav-pills">
-          <li class="<%= 'active' if params[:controller] == 'sites' %>"><%= link_to "Sites", sites_url(subdomain: "www") %></li>
-          <li class="<%= 'active' if params[:controller] == 'managers' %>"><%= link_to "Managers", managers_url(subdomain: "www") %></li>
-        </ul>
+    <div class="navbar navbar-inverse" style="margin: 0;">
+      <div class="navbar-inner" style="border-radius: 0px; margin: 0;">
+        <div class="container">
+          <%= link_to current_company.name, sites_url(subdomain: "www"), class: "brand" if current_company %>
+          <ul class="nav">
+            <li class="<%= 'active' if params[:controller] == 'sites' %>"><%= link_to "Sites", sites_url(subdomain: "www") %></li>
+            <li class="<%= 'active' if params[:controller] == 'managers' %>"><%= link_to "Managers", managers_url(subdomain: "www") %></li>
+          </ul>
+          <%= render 'layouts/user_nav' %>
+          <%= render 'home/nav' unless user_signed_in? %>
+        </div>
       </div>
-      
-      <div class="accountInfo">
-        <%= render 'layouts/user_nav' %>
-        <%= render 'home/nav' unless user_signed_in? %>
-      </div>
-      <div class="clearfix"></div>
-      
-    </div> <!-- end row mainHeader-->
-    
+    </div>     
 
     <%= yield %>
 
