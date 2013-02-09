@@ -2,8 +2,9 @@
   <div class="row">
     <div class="span12">
       <!-- <%= raw best_in_place_if user_signed_in?, @page, :content, type: :textarea, sanitize: false %>-->  
-      <%= raw @page.content %>
-
+      <div>
+        <%= raw @page.content %>
+      </div>
       <% @page.posts.each do |post| %>
         <div class="post">
           <%= render "posts/#{@page.post_type.singularize.downcase}", :post => post %>
