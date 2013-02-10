@@ -5,6 +5,7 @@ class UserMailer < ActionMailer::Base
     @invitee = invitee
     @invitedBy = invitedBy
     @site = site
+    attachments.inline['logo.png'] = File.read("#{Rails.root}/app/assets/images/logo.png")
 
     mail to: invitee.email, subject: "You've been invited to Condo Motion"
   end
@@ -12,6 +13,7 @@ class UserMailer < ActionMailer::Base
 	def invite_manager(invitee, invitedBy)
     @invitee = invitee
     @invitedBy = invitedBy
+    attachments.inline['logo.png'] = File.read("#{Rails.root}/app/assets/images/logo.png")
 
     mail to: invitee.email, subject: "You've been invited to Condo Motion"
   end

@@ -1,6 +1,15 @@
-New <%= @post.post_type.singularize.titleize %> Post!
+Hello there!
 
-<% unless @attachment_url == "" %>
-	<br>
-	<%= link_to "Attachment", @attachment_url %>
-<% end %>
+<p>A new <%= @post.post_type.singularize.titleize %> post has been added to your community's Condo Motion website.  The content of the post is below:</p>
+
+<div style="padding: 10px; background: #fff; margin-top: 10px;">
+	<h3><%= @post.title %></h3>
+	<p><%= @post.content unless @post.content.nil? %></p>
+	<% unless @attachment_url == "" %>
+		<br>
+		<%= link_to "Attachment", @attachment_url %>
+	<% end %>
+</div>
+
+<p>Thanks,</p>
+<p>The Condo Motion Team</p>
