@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :owned_company_attributes, :receive_post_mails
   # validates_uniqueness_of :email #, scope: :company_id
 
-  validates :name, presence: true
+  # validates :name, presence: true
 
   has_many :memberships
   has_many :sites, :through => :memberships

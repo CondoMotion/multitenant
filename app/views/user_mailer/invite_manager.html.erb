@@ -1,7 +1,6 @@
 <p>Hi <%= @invitee.email %>,</p>
-<p><%= @invitedBy.email %> has created a Condo Motion account for you.</p> 
-<p>
-You can login using your email and temporary password: <%= @invitee.password %>.
-</p>
+<p><%= @invitedBy.email %> has added you as a manager on Condo Motion.  From here, you can post news, documents, and photos to your condos' websites all from one centralized dashboard.</p> 
+<p>You can login using your email and temporary password:</p>
+<p><strong><%= @invitee.password %></strong></p>
 
-<%= link_to "Sign in now", new_user_session_url() %>
+<%= link_to "Sign in now", new_user_session_url %>

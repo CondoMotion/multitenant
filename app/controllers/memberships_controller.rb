@@ -7,7 +7,7 @@ class MembershipsController < ApplicationController
 	    @pw = (0...8).map{ @o[rand(@o.length)] }.join
 	    @user = User.find_by_email(email)
 	
-	    if @user.present?   
+	    if @user.present?
 	      @user.manager = true if @user.company == current_company  
         @user.save
 	    else    
@@ -23,7 +23,7 @@ class MembershipsController < ApplicationController
 	  end
 	
 	  respond_to do |format|
-	    format.html { redirect_to sites_url, notice: 'Managers added.' }
+	    format.html { redirect_to managers_url, notice: 'Managers added.' }
 	  end
 	end
 
@@ -59,7 +59,7 @@ class MembershipsController < ApplicationController
 	      @membership.user = @user
 	      @membership.role = @role  
 	
-	      if @membership.save       
+	      if @user.save       
 	        UserMailer.invite_user(@user, current_user, current_site).deliver
 	      end
 	    end
