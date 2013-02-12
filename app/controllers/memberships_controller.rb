@@ -37,7 +37,7 @@ class MembershipsController < ApplicationController
 	    @user = User.find_by_email(email)
 	    @site_role = @user.site_role(current_site) if @user.present?
 
-	    if @user 
+	    if @user.present?
 		    if ( @user.company != current_company ) || @user.manages?(current_site) 
 		    	# already a manager or member of other company.  do nothing
 		    	false
@@ -59,7 +59,7 @@ class MembershipsController < ApplicationController
 	      @membership.user = @user
 	      @membership.role = @role  
 	
-	      if @user.save       
+	      if @membership.save       
 	        UserMailer.invite_user(@user, current_user, current_site).deliver
 	      end
 	    end
