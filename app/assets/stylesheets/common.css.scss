@@ -1,0 +1,47 @@
+/*
+ * Common variables and mixins
+ */
+
+@import "bootstrap";
+@import "font-awesome";
+
+$invalid: #C72020;
+$footerHeight: 30px;
+
+@mixin absolute-fill($top:0px, $right:0px, $bottom:0px, $left:0px) {
+    position:absolute;
+    top:$top;
+    right:$right;
+    bottom:$bottom;
+    left:$left
+}
+
+@mixin absolute-vert($top:0px, $bottom:0px){
+    position:absolute;
+    top:$top;
+    bottom:$bottom;
+}
+
+@mixin box-shadow($radius:10px, $color:#000){
+    -moz-box-shadow: 0px 0px $radius $color;
+    -webkit-box-shadow: 0px 0px $radius $color;
+    box-shadow: 0px 0px $radius $color;
+}
+
+@mixin rounded-top-left {
+  $vert: top;
+  $horz: left;
+  $radius: 10px;
+
+  border-#{$vert}-#{$horz}-radius: $radius;
+  -moz-border-radius-#{$vert}#{$horz}: $radius;
+  -webkit-border-#{$vert}-#{$horz}-radius: $radius;
+}
+
+#navbar li { @include rounded-top-left; }
+#footer { @include rounded-top-left; }
+
+/* override to fix duplicated icons caused by bootstrap + font-awesome */
+[class^="icon-"], [class*=" icon-"]{
+    background:none;
+}

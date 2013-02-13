@@ -10,9 +10,8 @@
     <!-- Le styles -->
     <%= stylesheet_link_tag    "application", :media => "all" %>
 
-<!--
     <link href='http://fonts.googleapis.com/css?family=Raleway:100|Varela' rel='stylesheet' type='text/css'>
--->
+
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
 
@@ -29,34 +28,47 @@
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 
-  <body class="<%= controller.controller_name %>">
+  <body class="<%= controller.controller_name %> <%= controller.action_name %>">
+    <div class="wrap">
 
-    <% if flash[:notice] %>
-      <p class="flash alert alert-success"><%= flash[:notice] %></p>
-    <% end %>
-    <% if flash[:error] %>
-      <p class="flash alert alert-error"><%= flash[:error] %></p>
-    <% end %>  	
+      <!-- Flash Notice -->
+      <% if flash[:notice] %>
+        <p class="flash alert alert-success"><%= flash[:notice] %></p>
+      <% end %>
+      <% if flash[:error] %>
+        <p class="flash alert alert-error"><%= flash[:error] %></p>
+      <% end %>  	
 
-    <div class="navbar navbar-inverse" style="margin: 0;">
-      <div class="navbar-inner" style="border-radius: 0px; margin: 0;">
-        <div class="container">
-          <%= link_to current_company.name, sites_url(subdomain: "www"), class: "brand" if current_company %>
-          <ul class="nav">
-            <li class="<%= 'active' if params[:controller] == 'sites' %>"><%= link_to "Sites", sites_url(subdomain: "www") %></li>
-            <li class="<%= 'active' if params[:controller] == 'managers' %>"><%= link_to "Managers", managers_url(subdomain: "www") %></li>
-          </ul>
-          <%= render 'layouts/user_nav' %>
-          <%= render 'home/nav' unless user_signed_in? %>
+      <!-- Navigation -->
+      <div class="header navbar navbar-inverse">
+        <div class="navbar-inner">
+          <div class="container">
+            <%= link_to current_company.name, sites_url(subdomain: "www"), 
+                class: "brand" if current_company %>
+            <ul class="nav">
+              <li class="<%= 'active' if params[:controller] == 'sites' %>">
+                <%= link_to "Sites", sites_url(subdomain: "www") %>
+              </li>
+              <li class="<%= 'active' if params[:controller] == 'managers' %>">
+                <%= link_to "Managers", managers_url(subdomain: "www") %>
+              </li>
+            </ul>
+            <%= render 'layouts/user_nav' %>
+            <%= render 'home/nav' unless user_signed_in? %>
+          </div>
         </div>
+      </div> <!-- end navbar -->
+
+      <!-- Page Contents -->
+      <div class="content">
+        <%= yield %>
       </div>
-    </div>     
 
-    <%= yield %>
+      <!-- Footer -->
+      <div class="footer">
+        Condo Motion &copy Copyright <%= Time.now.year %>
+      </div>
 
- <div class="footer">
-  Condo Motion | Copyright 2013
-</div>
-
+    </div> <!-- end mainWrap -->
   </body>
 </html>

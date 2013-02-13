@@ -5,9 +5,7 @@
         position:relative;
         width:560px;
         padding-top:20px;
-        margin-left:auto;
-        margin-right:auto;
-        margin-top:40px;
+        margin:40px auto 0px auto;
         border:1px solid #ccc;
         background:white;
         h2{
@@ -31,10 +29,6 @@
                 color:#444;
             }
         }
-        // icons are rendering funny without this
-        i{
-            background:white;
-        }
     }
 }
 
@@ -56,16 +50,20 @@
         margin-bottom:20px;
         border-bottom: 1px solid #ddd;
     }
-    // icons are rendering funny without this
-    i{
-        background:white;
-    }
 }
 
 // Style for document posts
 .docPost{
     padding:10px 10px 5px 10px;
     border-bottom:1px solid #eee;
+    &:hover{
+        background:#FFFFbb;
+        cursor:pointer;
+        .docTitle{
+            text-decoration:underline;
+        }
+    }
+
     .docIcon{
         float:left;
         width:20px;
@@ -88,18 +86,6 @@
     .postControls{
         float:left;
         width:50px;
-    }
-}
-// hover class for document, setting this via JS because of issue with icons
-// needing the background changed when hovering
-.docPostHover{
-    background:#FFFFbb;
-    cursor:pointer;
-    .docTitle{
-        text-decoration:underline;
-    }
-    .docIcon a{
-        color:#444;
     }
 }
 
@@ -157,14 +143,11 @@
     }
 }
 
+// Style for modals
 #newsModal, #documentsModal, #photosModal{
     .cancelBtn{
         position:absolute;
         bottom:15px;
         right:155px;
     }
-}
-.btn [class^="icon-"], .btn [class*=" icon-"], .nav [class^="icon-"], .nav [class*=" icon-"] {
-display: inline;
-line-height: 1;
 }

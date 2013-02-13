@@ -1,52 +1,27 @@
-// Place all the styles related to the pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-#pages .handle {
-  font-size: 12px;
-  color: #777;
-  cursor: move;
-}
-
-.purr {
-  position: fixed;
-  top: 30px;
-  right: 100px;
-  width: 250px;
-  padding: 20px;
-  background-color: #FCC;
-  border: solid 2px #C66;
-  &:first-letter { text-transform: uppercase; }
-}
-
-.mainImage{
-  height:142px;
-  background: url('city_sm.jpg');
-  border-top: 1px solid #aaa;
-}
-
-.newPostArea {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  text-align: right;
-}
-
-#pages {
-  list-style: none;
-  margin: 0 -20px;
-  li {
-    cursor: move;
-    padding: 10px 20px;
-    .handle {
-      margin: 0 5px 0 -10px;
-      padding: 5px;
+@import "common";
+.pages{
+    /* OB: what is this for?
+    .purr {
+        position: fixed;
+        top: 30px;
+        right: 100px;
+        width: 250px;
+        padding: 20px;
+        background-color: #FCC;
+        border: solid 2px #C66;
+        &:first-letter { text-transform: uppercase; }
     }
-    &:hover {
-      background: #f1f1f1;
+    */
+    .mainImage{
+        height:142px;
+        background: url('city_sm.jpg');
+        border-top: 1px solid #aaa;
     }
-    .btn-group {
-      position: relative;
-      top: -5px;
+    
+    .newPostArea {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        text-align: right;
     }
-  }
 }

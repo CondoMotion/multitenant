@@ -1,6 +1,6 @@
-@import "bootstrap";
+@import "common";
 .sessions, .registrations, .passwords {
-    background: #4B7399;
+    background: #666;
     .box{
         margin:50px auto;
         @include border-radius(5px);

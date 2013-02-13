@@ -1,73 +1,20 @@
 // Place all the styles related to the sites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "bootstrap";
-$invalid: #C72020;
-.navbar a.brand, .navbar .nav > li > a {
-    padding: 20px;
-}
-.sites, .managers, .registrations{
-    #managersTab{
-        padding:10px 20px;
-        background:#f4f4f4;
-        margin-top:20px;
-        min-height:450px;
-        border:1px solid #eee;
-	@include border-radius(5px);
-        .lightText{
-            color:#888;
-        }
-        ul{
-            list-style-type:none;
-            margin-left:0px;
-            li{
-                padding:3px 0px;
-            }
-        }
-        #addManagerDialog{
-            display:none;
-            padding:10px;
-            margin-left:-10px;
-            margin-right:-10px;
-            margin-top:20px;
-            border:1px dotted #bbb;
-            background:#f8f8f8;
-	    @include border-radius(5px);
-            //background:#FBFCE6;
-            .submitArea{
-                //float:right;
-            }
-            textarea#emails{
-                margin-top:10px;
-                height:55px;
-                font-size:13px;
-            }
-            #emailError{
-                margin-top:10px;
-                color: $invalid;
-                font-size:12px;
-                text-align:right;
-            }
-        }
-    }
+@import "common";
 
-    #sitesTab{
-        position:absolute;
-        top:60px;
-        bottom:0px;
-        left:0px;
-        right:0px;
-        background: #444;
+.sites.index {
+    .content{
+        @include absolute-fill(40px, 0px, $footerHeight, 0px);
+        background:#444;
         .sideBar{
-            position:absolute;
-            top:0px;
-            bottom:40px;
-            left:0px;
-            width:200px;
-            background:#444;
+            @include absolute-vert(10px, 15px);
+            width:220px;
+            overflow:auto;
+            overflow-x:hidden;
+
             h3{
                 margin:20px 20px 0px 20px;
-                padding:0px;
                 font-weight:normal;
                 font-style:italic;
                 color:#999;
@@ -75,20 +22,13 @@ $invalid: #C72020;
                 line-height:24px;
                 border-bottom:1px solid #666;
             }
-            a{
-                i{
-                    // icons are rendering incorrectly without this
-                    background:none;
-                    margin-top:2px;
-                }
-            }
             .siteList{
                 // override some bootstrap style
                 .nav{
                     margin:4px 0px;
                     li{
                         margin-left:5px;
-                        width:190px;
+                        width:210px;
                         a{
                             @include border-radius(0px);
                             border:none;
@@ -112,34 +52,25 @@ $invalid: #C72020;
                 margin:30px 0px 0px 20px;
                 padding-right:15px;
             }
-
         }
-        .mainContent{
-            position:absolute;
-            top:0px;
-            bottom:0px;
-            left:200px;
-            right:0px;
+       .panelArea{
+           @include absolute-fill(0px, 0px, 0px, 230px);
             .sitePanel{
+                @include absolute-fill(20px, 15px, 15px, 5px);
+	        @include border-radius(3px);
+                @include box-shadow(20px);
                 display:none;
-                position:absolute;
-                top:15px;
-                bottom:40px;
+                min-width:750px;
                 z-index:1;
                 overflow:auto;
-                left:0px;
-                right:10px;
-                min-width:750px;
                 background:white;
                 padding:30px 40px;
-                border:1px solid #ccc;
-	        @include border-radius(3px);
-                /* shadowed */
-                -moz-box-shadow: 2px 2px 10px #ccc;
-                -webkit-box-shadow: 20px 0px 0px #fff;
-                box-shadow: 0px 0px 20px #000;
-                h2{font-size:28px;}
+                h2{
+                    font-size:28px;
+                    margin-bottom:12px;
+                }
                 .newPostMenu{
+                    margin-right:10px;
                     .dropdown-menu{
                         padding:5px 0px;
                         li a{
@@ -167,19 +98,15 @@ $invalid: #C72020;
                             font-style:italic;
                             color:#000;
                             i{
-                                // icons are rendering incorrectly without this
-                                background:none;
-                                margin-top:2px;
                                 color:#666;
                             }
                         }
                     }
                     .postInfo{
-                        color:#aaa;
+                        color:#999;
                         margin-bottom:20px;
                     }
                 }
-                
                 
                 .box{
                     border:1px solid #ccc;
@@ -198,7 +125,6 @@ $invalid: #C72020;
                     }
                 }
 
-
                 .assignedMngrs, .residents{
                     width:280px;
                     ul{
@@ -209,12 +135,8 @@ $invalid: #C72020;
                             padding:2px 0px;
                             list-style:none;
                             i{
-                                // FIX THIS, icons not displaying properly,
-                                // something with content
-                                    //content:"";
-                                    background:none;
-                                    color:#666;
-                                    padding:1px 5px 0px 0px;
+                                color:#666;
+                                padding:1px 5px 0px 0px;
                             }
                         }
                     }
@@ -259,122 +181,135 @@ $invalid: #C72020;
                 margin-bottom:20px;
             }
         }
-
+ 
     }
+}
 
-    .newSite {
-        position:absolute;
-        top:60px; bottom:0px; left:0px; right:0px;
+ 
+// Style for new sites
+.sites.new{
+    .wrap{
         background: #4B7399;
-        padding:60px;
-        .formBox{
-            margin:0px auto 0px auto;
-            width:264px;
-            background:#f4f4f4;
-            border:1px solid #ddd;
-            padding:10px 40px;
-	    @include border-radius(5px);
-            .actions{
-                margin-top:5px;
-                float:right;
-            }
-            input[type="text"]{
-                width:250px;
-            }
-            select{
-                width:265px;
-            }
-            textArea{
-                width:250px;
-            }
+    }
+    .content{
+        padding-top:40px;
+    }
+    .formBox{
+        margin:0px auto 0px auto;
+        width:264px;
+        background:#f4f4f4;
+        border:1px solid #ddd;
+        padding:10px 40px;
+	@include border-radius(5px);
+        .actions{
+            margin-top:5px;
+            float:right;
+        }
+        input[type="text"]{
+            width:250px;
+        }
+        select{
+            width:265px;
+        }
+        textArea{
+            width:250px;
+        }
+    }
+    .backLink{
+        width:300px;
+        margin: 10px auto 0px auto;
+        a{color:white;}
+    }
+}
+
+
+// Style for editing sites
+.sites.edit{
+    .siteName{
+        margin:70px 0px 0px 80px;
+        h1{
+            font-size:35px;
+            margin-bottom:0px;
+        }
+        h2{
+            color:#bbb;
+            font-weight:normal;
+            font-size:28px;
+            margin:0px;
         }
         .backLink{
-            width:300px;
-            margin: 10px auto 0px auto;
-            a{color:white;}
+            margin-top:30px;
         }
     }
-    .editSite{
-        position:absolute;
-        top:50px; bottom:20px; left:0px; right:0px;
-        overflow:auto;
-        .siteName{
-            margin:90px 0px 0px 80px;
-            h1{
-                font-size:35px;
-                margin-bottom:0px;
+    .settings{
+        margin:50px 0px 0px 50px;
+        .tab-pane{
+            padding:5px 20px;
+        }
+        #residents{
+            .emailsLabel{
+                font-size:16px;
+                line-height:16px;
+                margin-bottom:10px;
+                .muted{
+                    font-size:14px;
+                }
             }
-            h2{
-                color:#bbb;
-                font-weight:normal;
-                font-size:28px;
-                margin:0px;
+            textArea{
+                width:220px;
+                height:70px;
             }
-            .backLink{
-                margin-top:30px;
+            .roleLabel{
+                display:inline-block;
+                margin:15px 5px 0px 0px;
+                font-weight:bold;
+            }
+            select{
+                width:190px;
+            }
+            .btn{
+                margin-top:20px;
+            }
+            .emptyMsg{
+                text-align:center;
+                font-style:italic;
+                padding-top:40px;
+                font-size:20px;
+                line-height:24px;
+                color:#aaa;
+            }
+            .listArea{
+                padding-top:10px;
+                width:250px;
+            }
+            .inviteArea{
+                padding:20px 0px 0px 60px;
+                border-left:1px solid #ddd;
             }
         }
-        .settings{
-            margin:50px 0px 0px 50px;
-            .tab-pane{
-                padding:5px 20px;
+        #managers{
+            .btn{
+                margin-top:20px;
             }
-            #residents{
-                .emailsLabel{
-                    font-size:16px;
-                    line-height:16px;
-                    margin-bottom:10px;
-                    .muted{
-                        font-size:14px;
-                    }
+        }
+        #pages {
+            list-style: none;
+            margin: 0 -20px;
+            li {
+                cursor: move;
+                padding: 10px 20px;
+                .handle {
+                    margin: 0 5px 0 -10px;
+                    padding: 5px;
                 }
-                textArea{
-                    width:220px;
-                    height:70px;
+                &:hover {
+                    background: #f1f1f1;
                 }
-                .roleLabel{
-                    display:inline-block;
-                    margin:15px 5px 0px 0px;
-                    font-weight:bold;
-                }
-                select{
-                    width:190px;
-                }
-                .btn{
-                    margin-top:20px;
-                }
-                .emptyMsg{
-                    text-align:center;
-                    font-style:italic;
-                    padding-top:40px;
-                    font-size:20px;
-                    line-height:24px;
-                    color:#aaa;
-                }
-                .listArea{
-                    padding-top:10px;
-                    width:250px;
-                }
-                .inviteArea{
-                    padding:20px 0px 0px 60px;
-                    border-left:1px solid #ddd;
-                }
-            }
-            #managers{
-                .btn{
-                    margin-top:20px;
+                .btn-group {
+                    position: relative;
+                    top: -5px;
                 }
             }
         }
-    }
-
-    .footer{
-        position:absolute;
-        text-align: center;
-        color: #999;
-        bottom:0px;
-        height:30px;
-        left:0px;
-        right:0px;
     }
 }

@@ -1,13 +1,11 @@
-<div class="newSite">
-
-  <div class="formBox">
-    <h1>New site</h1>
-    <%= render 'form' %>
-  </div>
-
-    <div class="backLink">
-      <%= link_to "<- Back to dashboard", sites_url(subdomain: 'www') %>
-    </div>
-
+<div class="formBox">
+  <h2>New site</h2>
+  <%= render 'form' %>
 </div>
+
+<div class="backLink">
+  <%= link_to "<- Back to dashboard", sites_url(subdomain: 'www') %>
+</div>
+
+
 
