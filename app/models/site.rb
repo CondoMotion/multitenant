@@ -1,4 +1,5 @@
 class Site < ActiveRecord::Base
+	before_create :default_layout
 	after_create :create_default_pages
 	after_create :create_default_roles
 	after_create :add_company_owner_as_manager
@@ -25,6 +26,10 @@ class Site < ActiveRecord::Base
   default_scope { where(company_id: Company.current_id) }
 
 private
+	def default_layout
+		self.layout = "site"
+	end
+
 	def subdomain_param
 		self.subdomain = self.subdomain.parameterize
 	end
