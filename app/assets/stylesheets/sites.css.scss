@@ -4,6 +4,31 @@
 @import "common";
 
 .sites.index {
+    .testModal{
+        display:none;
+        position:absolute;
+        background:white;
+        border:1px solid black;
+        width:550px;
+        left:100px;
+        top:100px;
+        height:300px;
+        z-index:100;
+        padding:10px;
+        textarea{
+            width:500px;
+            height:250px;
+        }
+        .nicEdit-pane{
+            background:pink;
+            
+            input{
+                width:100px;
+                background:pink;
+            }
+        }
+        
+    }
     .content{
         @include absolute-fill(40px, 0px, $footerHeight, 0px);
         background:#444;

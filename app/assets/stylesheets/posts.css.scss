@@ -1,4 +1,6 @@
 // Style of show/edit pages
+@import "common";
+
 .posts{
     background:#777;
     .editBox{
@@ -126,7 +128,7 @@
             padding:10px 5px;
         }
         textArea{
-            width:480px;
+            width:490px;
             height:160px;
         }
         
@@ -136,6 +138,7 @@
         border-top:1px solid white;
         padding:15px 35px;
         text-align:right;
+        @include border-bottom-radius(6px);
     }
     // overwrite this style
     form{

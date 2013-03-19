@@ -15,13 +15,20 @@
         <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-        <li> <a href="#newsModal" data-toggle="modal" 
+
+         <li> <a href="#" class="newNewsBtn" id="newNewsBtn<%= newsPageId %>">News</a></li>
+         <li> <a href="#" class="newDocBtn" id="newDocBtn<%= docPageId %>">Document</a></li>
+<!--
+         <li> <a href="#newsModal" data-toggle="modal" 
                 class="newPostBtn" id="newPostBtn<%= newsPageId %>">News</a></li>
+
         <li> <a href="#documentsModal" data-toggle="modal" 
                 class="newPostBtn" id="newPostBtn<%= docPageId %>">Document</a></li>
+
         <li> <a href="#photosModal" data-toggle="modal" 
                 class="newPostBtn" id="newPostBtn<%= photoPageId %>">Photo</a></li>
       </ul>
+-->
     </div>
     <div class="btn-group">
       <%= link_to raw("<i class='icon-eye-open'></i> Visit Site"), root_url(subdomain: site.subdomain), class: "btn" %>
@@ -31,13 +38,14 @@
   </div>
 
   <div class="recentActivity">
+
     <h4>Recent Activity</h4>
     <% site.posts.take(10).each do |post| %>
 
     <!-- TODO: make a helper or something for this -->    
     <% iconClass =  post.post_type=="news"       ? "icon-bullhorn" :
                     post.post_type=="photos"     ? "icon-picture"  : 
-                                                   "icon-picture" %>
+                                                   "icon-file" %>
 
       <div class="postTitle">
         <%= link_to raw('<i class="' + iconClass + '"></i> &nbsp' + post.title),

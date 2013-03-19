@@ -17,7 +17,7 @@
       <% end %>
       <%= hidden_field_tag 'page_id', page_id %>
       <%= f.text_field :title, placeholder: "Title" %><br>
-      <%= f.text_area :content, rows: 5, placeholder: "Content" %><br>
+      <%= f.text_area :content, rows: 5, placeholder: "Content", id: "newsTextArea" %><br>
   </div>
   <div class="submitArea">
     <%= f.submit class: "btn btn-primary" %>

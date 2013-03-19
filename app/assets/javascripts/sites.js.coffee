@@ -16,19 +16,23 @@ validateEmails = (input) ->
 
 # Document Ready
 $ ->
-        # Tabs: TODO: probably easier to just make separate pages for managers and sites...
-        $('#sitesLink').click ->
-                $('#sitesLink').parent().addClass('active')
-                $('#managersLink').parent().removeClass('active')
-                $('#sitesTab').show()
-                $('#managersTab').hide()
-                return false
-        $('#managersLink').click ->
-                $('#managersLink').parent().addClass('active')
-                $('#sitesLink').parent().removeClass('active')
-                $('#managersTab').show()
-                $('#sitesTab').hide()
-                return false
+
+        # ------------------------------------------------
+        # modal events:
+        # TODO: move this to common.js
+        closeModal = ($modal) ->
+                $modal.hide()  # TODO: slide out?
+                $('#blanket').hide()
+        showModal = ($modal) ->
+                $modal.show();
+                $('#blanket').show()
+        
+        $('.close', '.cmoModal').click ->
+                closeModal($(this).closest('.cmoModal'))
+        $('.cancelBtn', '.cmoModal').click ->
+                closeModal($(this).closest('.cmoModal'))
+        #-------------------------------------------------
+
                 
         # add manager actions
         $('#addManagerBtn').click ->
@@ -84,11 +88,19 @@ $ ->
                 $(this).parent().find('.spinner').show()
 
         # new posts
-        $(document).on 'click', '.newPostBtn', (event) ->
+        $(document).on 'click', '.newNewsBtn', (event) ->
                 event.preventDefault()
                 pageId = $(this).attr('id').substring(10)
                 # set hidden input inside of form partials
-                $('#newsModal, #documentsModal, #photosModal').find('#page_id').val(pageId)
+                $('#newsModal').find('#page_id').val(pageId)
+                showModal( $('#newsModal') )
+
+        $(document).on 'click', '.newDocBtn', (event) ->
+                event.preventDefault()
+                pageId = $(this).attr('id').substring(9)
+                # set hidden input inside of form partials
+                $('#documentsModal').find('#page_id').val(pageId)
+                showModal( $('#documentsModal') )
 
         #
         # Editing site
@@ -105,3 +117,12 @@ $ ->
         $('a[data-toggle="tab"]').on 'shown', (e) ->
                 location.hash = $(e.target).attr('href').substr(1)
         # TODO: back button doesn't work with tabs, consider using history plugin.
+
+        # add WYSIWYG editor to news
+        if ($('#newsTextArea').length > 0)
+                new nicEditor({buttonList:['bold','italic','underline','ol','ul',
+                                           'removeformat','indent', 'outdent','upload',
+                                           'link', 'unlink', 'fontisize']
+                              }).panelInstance('newsTextArea')
+        # TODO: need to sanitize text from NicEdit, could contain malicious scripts
+

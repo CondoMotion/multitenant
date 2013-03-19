@@ -8,7 +8,7 @@
     <div class="clearfix"></div>
   </div>
   <div style="padding: 20px;">
-    <%= post.content %>
+    <%= raw(post.content) %>
   </div>
   <div style="padding: 0 20px; color: #ccc; font-size: 12px;">
     Posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.email %>

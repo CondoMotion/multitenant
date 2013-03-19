@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require jquery.purr
 //= require best_in_place
+//= require nicEdit
 //= require_tree .
 $(function(){
 		$('.flash').delay(2000).fadeOut();

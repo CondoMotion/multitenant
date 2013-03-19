@@ -1,5 +1,10 @@
 <% if @sites.length > 0 %>
 
+    <div class="testModal">
+      <textarea id="textEdit1"></textarea>
+    </div>
+
+
   <div class="sideBar">
     <h3>Sites</h3>
     <div class="siteList">
@@ -25,10 +30,11 @@
     <% end %>
     <!-- modal for posts -->
     <!-- NOTE: page_id is later filled in by javascript -->
-    <%= render "posts/news_modal",      :post => Post.new, :page_id => -1 %>
-    <%= render "posts/documents_modal", :post => Post.new, :page_id => -1 %>
-    <%= render "posts/photos_modal",    :post => Post.new, :page_id => -1 %>
   </div> <!-- end panelArea -->
+
+  <%= render "posts/news_modal",      :post => Post.new, :page_id => -1 %>
+  <%= render "posts/documents_modal", :post => Post.new, :page_id => -1 %>
+  <%= render "posts/photos_modal",    :post => Post.new, :page_id => -1 %>
 
 <% else %> <!-- no sites exist yet -->
 

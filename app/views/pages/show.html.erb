@@ -19,7 +19,7 @@
   <div class="newPostArea">
     <div class="btn-group">
       <%= link_to 'Edit Page', edit_page_path(@page), class: "btn btn-inverse" %>
-      <%= link_to "Add #{@page.post_type.singularize.capitalize}", "##{@page.post_type}Modal", role: 'button', class: 'btn btn-inverse', data: {toggle: 'modal'} if @page.has_posts? %>
+      <%= link_to "Add #{@page.post_type.singularize.capitalize}", "#", id: 'addPostBtn',  role: 'button', class: 'btn btn-inverse' if @page.has_posts? %>
     </div>
   </div>
   <%= render "posts/#{@page.post_type.downcase}_modal", :post => Post.new, :page_id => @page.id if @page.has_posts? %>

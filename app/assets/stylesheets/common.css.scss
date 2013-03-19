@@ -45,3 +45,33 @@ $footerHeight: 30px;
 [class^="icon-"], [class*=" icon-"]{
     background:none;
 }
+
+
+.cmoModal{
+    display:none;
+    position:absolute;
+    width:560px;
+    top:50px;
+    left:50%;
+    margin-left:-280px;
+    z-index:4;
+    background:white;
+    @include border-radius(5px);
+    @include box-shadow(20px);
+    .cancelBtn{
+        position:absolute;
+        bottom:15px;
+        right:155px;
+    }
+}
+#blanket{
+    display:none;
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index:3;
+    background:black;
+    opacity:0.8;
+}
